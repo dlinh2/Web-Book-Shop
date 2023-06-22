@@ -43,5 +43,6 @@ class Translator extends DatabaseConnection {
     function deleteTranslator($translator_id) {
         $sqlQuery = "delete from translator where translator_id=?";
         $result = $this->executeSQL($sqlQuery, $translator_id);
+        return $result;
     }
 }

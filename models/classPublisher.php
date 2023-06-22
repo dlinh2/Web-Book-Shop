@@ -43,5 +43,6 @@ class Publisher extends DatabaseConnection {
     function deletePublisher($publisher_id) {
         $sqlQuery = "delete from publisher where publisher_id=?";
         $result = $this->executeSQL($sqlQuery, $publisher_id);
+        return $result;
     }
 }

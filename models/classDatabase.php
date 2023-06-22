@@ -4,10 +4,11 @@ class DatabaseConnection {
     public $pdo_statement;
 
     function __construct() {
-        $connection = NULL;
+        $this->connection = NULL;
         try {
-            $connection = new PDO("mysql:host=sql12.freemysqlhosting.net;dbname=sql12627032", "sql12627032", "QyXXDVapDS");
-            $connection->query("SET NAME UTF8");
+            $this->connection = new PDO("mysql:host=sql12.freemysqlhosting.net;dbname=sql12627032", "sql12627032", "QyXXDVapDS");
+            //$this->connection = new PDO("mysql:host=localhost;dbname=bookshop","root","");
+            $this->connection->query("SET NAMES UTF8");
         } catch (PDOException $ex) {
             echo "<p>" . $ex->getMessage() . "</p>";
             die("<p>UNABLE TO CONNECT TO DATABASE</p>");

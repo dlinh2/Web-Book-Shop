@@ -60,5 +60,6 @@ class Book extends DatabaseConnection {
     function deleteBook($book_id) {
         $sqlQuery = "delete from book where book_id=?";
         $result = $this->executeSQL($sqlQuery, $book_id);
+        return $result;
     }
 }
