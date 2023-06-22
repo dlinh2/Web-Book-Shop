@@ -89,14 +89,34 @@
         </script>
         <br>
     <div class="pageBody">
-        <a href='/BookShop/Danh-muc.php'>
+        <?php
+            require_once("models/classBook.php");
+            require_once("models/classCategory.php");
+        ?>
+        <?php
+    $category = new Category();
+    $book = new Book();
+    $ketqua_C = $category->getCategoryList();
+    $ketqua_B = $book->getBookList();
+    if($ketqua_C==FALSE)
+        die("<p>LỖI TRUY VẤN DỮ LIỆU CATEGORY</p>");
+        if($ketqua_B==FALSE)
+        die("<p>LỖI TRUY VẤN DỮ LIỆU BOOK</p>");
+    $rows = $category->data;
+    if($rows==NULL)
+        die("<p> KHÔNG CÓ DỮ LIỆU </p>");
+    foreach($rows as $row)//lặp từng dòng
+    {
+        $bImg = $row["book_cover"]==""?"no-image.png":$row["book_cover"];
+    ?>
+    <a href='/BookShop/Danh-muc.php' id="<?$row=["category_id"]?>">
             <div class="category">
-                <h1>Sách Mới</h1>
+                <h1><?=$row["category_name"]?></h1>
             </div>
         </a>
         <div class="bookShelf" id="sach-moi">
             <div class="listImg">
-                <a href="/BookShop/BookDetail.php" class="book"><img src="img/lang-nghe-gio-hat.jpg"></a>
+                <a href="/BookShop/BookDetail.php" class="book"><img src="images/<?=$bImg?>"></a>
                 <!-- <div class="popup" style="left:5px;  ">
                     <h1 class="name">Tắt đèn</h1>
                     <div class="description">
@@ -107,7 +127,32 @@
                         </ul>
                     </div>
                     <p class="price">48.000đ</p>
-                </div> -->
+                </div>   -->
+            </div>
+        </div>
+    
+    <?php
+    }//đóng foreach
+    ?>
+        <!-- <a href='/BookShop/Danh-muc.php'>
+            <div class="category">
+                <h1>Sách Mới</h1>
+            </div>
+        </a>
+        <div class="bookShelf" id="sach-moi">
+            <div class="listImg">
+                <a href="/BookShop/BookDetail.php" class="book"><img src="img/lang-nghe-gio-hat.jpg"></a>
+                <div class="popup" style="left:5px;  ">
+                    <h1 class="name">Tắt đèn</h1>
+                    <div class="description">
+                        <ul>
+                            <li>Số trang: 231</li>
+                            <li>Kích thước: 14x20.5 cm </li>
+                            <li>Ngày phát hành: 30-07-2018</li>
+                        </ul>
+                    </div>
+                    <p class="price">48.000đ</p>
+                </div>
                 <a href='/BookShop/BookDetail.php'><img src="img/khoa-hoc-chay-bo.jpg"></a>
                 <a href='/BookShop/BookDetail.php'><img src="img/bau-troi-va-mat-dat.jpg"></a>
                 <a href='/BookShop/BookDetail.php'><img src="img/ngoi-thu-nhat.jpg"></a>
@@ -132,7 +177,7 @@
             </div>
             <p class="shelf"></p>
         </div>
-        
+         -->
     </div>
     <footer class="footer">
         Địa chỉ: Đường Nghiêm Xuân Yêm - Đại Kim - Hoàng Mai - Hà Nội</br>
