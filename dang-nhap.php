@@ -12,15 +12,15 @@
     <div class="header">
         <div class="wrapper">
             <ul class= "topnav">
-                <a href="/BookShop/kiem-tra-don-hang.php">Kiểm tra đơn hàng</a>
+                <a href="kiem-tra-don-hang.php">Kiểm tra đơn hàng</a>
             </ul>
             <ul class="topnavR">
-                <li><a href="/BookShop/dang-ky.php">Đăng ký</a></li>
-                <li><a href="/BookShop/dang-nhap.php">Đăng nhập</a></li>
+                <li><a href="dang-ky.php">Đăng ký</a></li>
+                <li><a href="dang-nhap.php">Đăng nhập</a></li>
             </ul>
         </div>
         <div class="mednav">
-            <a href="/BookShop/homePage.php">
+            <a href="HomePage.php">
                 <div class="logo">
                     <img src="img/logo.png" alt="Book Shop">
                 </div>
@@ -36,16 +36,16 @@
             </div>
         </div>
             <ul id="nav">
-                <li><a href="/BookShop/Gioi-thieu.php">Giới thiệu</a></li>
+                <li><a href="Gioi-thieu.php">Giới thiệu</a></li>
                 <li>
                     <a href="">Danh mục sách</a>
                     <ul class="subnav">
-                        <li><a href="/BookShop/Danh-muc.php">Văn học Việt Nam</a></li>
-                        <li><a href="/BookShop/Danh-muc.php">Văn học Nước Ngoài</a></li>
-                        <li><a href="/BookShop/Danh-muc.php">Thiếu nhi</a></li>
+                        <li><a href="Danh-muc.php?id=van-hoc-viet-nam">Văn học Việt Nam</a></li>
+                        <li><a href="Danh-muc.php?id=van-hoc-nuoc-ngoai">Văn học Nước Ngoài</a></li>
+                        <li><a href="Danh-muc.php?id=thieu-nhi">Thiếu nhi</a></li>
                     </ul>
                 </li>
-                <li><a href="/BookShop/San-pham.php">Sản phẩm</a></li>
+                <li><a href="San-pham.php">Sản phẩm</a></li>
             </ul>
     </div>
     <div class="container">
@@ -80,7 +80,7 @@
                         <input type="submit" class="btn" value="Đăng nhập" />
                     </p>
                     <p>
-                        Chưa có tài khoản? Hãy <a href="/Bookshop/dang-ky.php" class="btn"><strong>Đăng ký</strong></a>
+                        Chưa có tài khoản? Hãy <a href="dang-ky.php" class="btn"><strong>Đăng ký</strong></a>
                     </p>
                 </form>
             </article>

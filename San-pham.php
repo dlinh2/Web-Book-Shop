@@ -12,15 +12,15 @@
     <div class="header">
         <div class="wrapper">
             <ul class= "topnav">
-                <a href="/BookShop/kiem-tra-don-hang.php">Kiểm tra đơn hàng</a>
+                <a href="kiem-tra-don-hang.php">Kiểm tra đơn hàng</a>
             </ul>
             <ul class="topnavR">
-                <li><a href="/BookShop/dang-ky.php">Đăng ký</a></li>
-                <li><a href="/BookShop/dang-nhap.php">Đăng nhập</a></li>
+                <li><a href="dang-ky.php">Đăng ký</a></li>
+                <li><a href="dang-nhap.php">Đăng nhập</a></li>
             </ul>
         </div>
         <div class="mednav">
-            <a href="/BookShop/homePage.php">
+            <a href="HomePage.php">
                 <div class="logo">
                     <img src="img/logo.png" alt="Book Shop">
                 </div>
@@ -36,33 +36,70 @@
             </div>
         </div>
             <ul id="nav">
-                <li><a href="/BookShop/Gioi-thieu.php">Giới thiệu</a></li>
+                <li><a href="Gioi-thieu.php">Giới thiệu</a></li>
                 <li>
                     <a href="">Danh mục sách</a>
                     <ul class="subnav">
-                        <li><a href="/BookShop/Danh-muc.php">Văn học Việt Nam</a></li>
-                        <li><a href="/BookShop/Danh-muc.php">Văn học Nước Ngoài</a></li>
-                        <li><a href="/BookShop/Danh-muc.php">Thiếu nhi</a></li>
+                        <li><a href="Danh-muc.php?id=van-hoc-viet-nam">Văn học Việt Nam</a></li>
+                        <li><a href="Danh-muc.php?id=van-hoc-nuoc-ngoai">Văn học Nước Ngoài</a></li>
+                        <li><a href="Danh-muc.php?id=thieu-nhi">Thiếu nhi</a></li>
                     </ul>
                 </li>
-                <li><a href="/BookShop/San-pham.php">Sản phẩm</a></li>
+                <li><a href="San-pham.php">Sản phẩm</a></li>
             </ul>
     </div>
     <div class="pageBody">
-        <div class="category">
+        <?php
+            require_once("models/classBook.php");
+        ?>
+        <?php
+        $book = new Book();
+        $ketqua_B = $book->getBookList();
+        if($ketqua_B==FALSE)
+            die("<p>LỖI TRUY VẤN DỮ LIỆU BOOK</p>");
+        $rows = $book->data;
+        if($rows==NULL)
+            die("<p> KHÔNG CÓ DỮ LIỆU </p>");
+        foreach($rows as $row)
+        {
+            $bImg = $row["book_cover"]==""?"no-image.png":$row["book_cover"];
+        ?>
+            <div class="category">
+                <h1>Sản Phẩm</h1>
+            </div>
+            <div class="bookShelf">
+            <div class="listImg">
+                <a href="BookDetail.php?id=" class="book"><img src="images/<?=$bImg?>"></a>
+                <!-- <div class="popup" style="left:5px;  ">
+                    <h1 class="name">Tắt đèn</h1>
+                    <div class="description">
+                        <ul>
+                            <li>Số trang: 231</li>
+                            <li>Kích thước: 14x20.5 cm </li>
+                            <li>Ngày phát hành: 30-07-2018</li>
+                        </ul>
+                    </div>
+                    <p class="price">48.000đ</p>
+                </div>   -->
+            </div>
+        </div>
+        <?php
+        }//đóng foreach
+        ?>
+        <!-- <div class="category">
             <h1>Sản phẩm</h1>
         </div>
         <div class="bookShelf" id="san-pham">
             <div class="listImg">
-                <a href='/BookShop/BookDetail.php'><img src="img/lang-nghe-gio-hat.jpg"></a>
-                <a href='/BookShop/BookDetail.php'><img src="img/khoa-hoc-chay-bo.jpg"></a>
-                <a href='/BookShop/BookDetail.php'><img src="img/bau-troi-va-mat-dat.jpg"></a>
-                <a href='/BookShop/BookDetail.php'><img src="img/ngoi-thu-nhat.jpg"></a>
-                <a href='/BookShop/BookDetail.php'><img src="img/khan-goi-len-sao-hoa.jpg"><a>
-                <a href='/BookShop/BookDetail.php'><img src="img/quy-luat.jpg"></a>
-                <a href='/BookShop/BookDetail.php'><img src="img/hanh-trinh-yeu.jpg"><a>
+                <a href='BookDetail.php'><img src="img/lang-nghe-gio-hat.jpg"></a>
+                <a href='BookDetail.php'><img src="img/khoa-hoc-chay-bo.jpg"></a>
+                <a href='BookDetail.php'><img src="img/bau-troi-va-mat-dat.jpg"></a>
+                <a href='BookDetail.php'><img src="img/ngoi-thu-nhat.jpg"></a>
+                <a href='BookDetail.php'><img src="img/khan-goi-len-sao-hoa.jpg"><a>
+                <a href='BookDetail.php'><img src="img/quy-luat.jpg"></a>
+                <a href='BookDetail.php'><img src="img/hanh-trinh-yeu.jpg"><a>
             </div>
-        </div>
+        </div> -->
     </div>
     <footer class="footer">
         Địa chỉ: Đường Nghiêm Xuân Yêm - Đại Kim - Hoàng Mai - Hà Nội</br>

@@ -12,17 +12,19 @@
     <div class="header">
         <div class="wrapper">
             <ul class= "topnav">
-                <a href="/BookShop/kiem-tra-don-hang.php">Kiểm tra đơn hàng</a>
+                <a href="kiem-tra-don-hang.php">Kiểm tra đơn hàng</a>
             </ul>
             <ul class="topnavR">
-                <li><a href="/BookShop/dang-ky.php">Đăng ký</a></li>
-                <li><a href="/BookShop/dang-nhap.php">Đăng nhập</a></li>
+                <li><a href="dang-ky.php">Đăng ký</a></li>
+                <li><a href="dang-nhap.php">Đăng nhập</a></li>
             </ul>
         </div>
         <div class="mednav">
-            <div class="logo">
-                <img src="img/logo.png" alt="Book Shop">
-            </div>
+            <a href="HomePage.php">
+                <div class="logo">
+                    <img src="img/logo.png" alt="Book Shop">
+                </div>
+            </a>
             <div class="search">
                 <form action="/tim-kiem" method="GET">
                     <input type="text" name="q" placeholder="Tìm kiếm sách..." class="text" />
@@ -34,16 +36,16 @@
             </div>
         </div>
             <ul id="nav">
-                <li><a href="/BookShop/Gioi-thieu.php">Giới thiệu</a></li>
+                <li><a href="Gioi-thieu.php">Giới thiệu</a></li>
                 <li>
                     <a action="">Danh mục sách</a>
                     <ul class="subnav">
-                        <li><a href="/BookShop/Danh-muc.php" id="van-hoc-viet-nam">Văn học Việt Nam</a></li>
-                        <li><a href="/BookShop/Danh-muc.php" id="van-hoc-nuoc-ngoai">Văn học Nước Ngoài</a></li>
-                        <li><a href="/BookShop/Danh-muc.php" id="thieu-nhi">Thiếu nhi</a></li>
+                        <li><a href="Danh-muc.php?id=van-hoc-viet-nam">Văn học Việt Nam</a></li>
+                        <li><a href="Danh-muc.php?id=van-hoc-nuoc-ngoai">Văn học Nước Ngoài</a></li>
+                        <li><a href="Danh-muc.php?id=thieu-nhi">Thiếu nhi</a></li>
                     </ul>
                 </li>
-                <li><a href="/BookShop/San-Pham.php">Sản phẩm</a></li>
+                <li><a href="San-Pham.php">Sản phẩm</a></li>
             </ul>
     </div>
     <div class="slideshow-container">
@@ -91,32 +93,27 @@
     <div class="pageBody">
         <?php
             require_once("models/classBook.php");
-            require_once("models/classCategory.php");
         ?>
         <?php
-    $category = new Category();
     $book = new Book();
-    $ketqua_C = $category->getCategoryList();
     $ketqua_B = $book->getBookList();
-    if($ketqua_C==FALSE)
-        die("<p>LỖI TRUY VẤN DỮ LIỆU CATEGORY</p>");
-        if($ketqua_B==FALSE)
+    if($ketqua_B==FALSE)
         die("<p>LỖI TRUY VẤN DỮ LIỆU BOOK</p>");
-    $rows = $category->data;
+    $rows = $book->data;
     if($rows==NULL)
         die("<p> KHÔNG CÓ DỮ LIỆU </p>");
-    foreach($rows as $row)//lặp từng dòng
+    foreach($rows as $row)
     {
         $bImg = $row["book_cover"]==""?"no-image.png":$row["book_cover"];
     ?>
-    <a href='/BookShop/Danh-muc.php' id="<?$row=["category_id"]?>">
+        <a href='Danh-muc.php?id=sach-moi'>
             <div class="category">
-                <h1><?=$row["category_name"]?></h1>
+                <h1>Sách Mới</h1>
             </div>
         </a>
-        <div class="bookShelf" id="sach-moi">
+        <div class="bookShelf">
             <div class="listImg">
-                <a href="/BookShop/BookDetail.php" class="book"><img src="images/<?=$bImg?>"></a>
+                <a href="BookDetail.php?id=" class="book"><img src="images/<?=$bImg?>"></a>
                 <!-- <div class="popup" style="left:5px;  ">
                     <h1 class="name">Tắt đèn</h1>
                     <div class="description">
@@ -130,7 +127,27 @@
                 </div>   -->
             </div>
         </div>
-    
+        <a href='Danh-muc.php?id=sach-ban-chay'>
+            <div class="category">
+                <h1>Sách Bán Chạy</h1>
+            </div>
+            <div class="bookShelf">
+            <div class="listImg">
+                <a href="BookDetail.php?id=>" class="book"><img src="images/<?=$bImg?>"></a>
+                <!-- <div class="popup" style="left:5px;  ">
+                    <h1 class="name">Tắt đèn</h1>
+                    <div class="description">
+                        <ul>
+                            <li>Số trang: 231</li>
+                            <li>Kích thước: 14x20.5 cm </li>
+                            <li>Ngày phát hành: 30-07-2018</li>
+                        </ul>
+                    </div>
+                    <p class="price">48.000đ</p>
+                </div>   -->
+            </div>
+        </div>
+        </a>
     <?php
     }//đóng foreach
     ?>
