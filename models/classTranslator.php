@@ -16,7 +16,7 @@ class Translator extends DatabaseConnection {
         return $result;
     }
 
-    function getTranslator($translator_id) {
+    function getTranslatorById($translator_id) {
         $sqlQuery = "select * from translator where translator_id=?";
         $result = $this->executeSQL($sqlQuery, [$translator_id]);
         if ($result) {

@@ -16,7 +16,7 @@ class Publisher extends DatabaseConnection {
         return $result;
     }
 
-    function getPublisher($publisher_id) {
+    function getPublisherById($publisher_id) {
         $sqlQuery = "select * from publisher where publisher_id=?";
         $result = $this->executeSQL($sqlQuery, [$publisher_id]);
         if ($result) {
