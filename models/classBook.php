@@ -16,9 +16,9 @@ class Book extends DatabaseConnection {
         return $result;
     }
 
-    function getBook($book_id) {
+    function getBookById($book_id) {
         $sqlQuery = "select * from book where book_id=?";
-        $result = $this->executeSQL($sqlQuery, $book_id);
+        $result = $this->executeSQL($sqlQuery, [$book_id]);
         if ($result) {
             $this->data = $this->pdo_statement->fetch();
         }
@@ -59,7 +59,7 @@ class Book extends DatabaseConnection {
 
     function deleteBook($book_id) {
         $sqlQuery = "delete from book where book_id=?";
-        $result = $this->executeSQL($sqlQuery, $book_id);
+        $result = $this->executeSQL($sqlQuery, [$book_id]);
         return $result;
     }
 }

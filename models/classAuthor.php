@@ -16,9 +16,9 @@ class Author extends DatabaseConnection {
         return $result;
     }
 
-    function getAuthor($author_id) {
+    function getAuthorById($author_id) {
         $sqlQuery = "select * from author where author_id=?";
-        $result = $this->executeSQL($sqlQuery, $author_id);
+        $result = $this->executeSQL($sqlQuery, [$author_id]);
         if ($result) {
             $this->data = $this->pdo_statement->fetch();
         }
@@ -27,7 +27,7 @@ class Author extends DatabaseConnection {
 
     function addAuthor($author_name) {
         $sqlQuery = "insert into author values(NULL,?)";
-        $result = $this->executeSQL($sqlQuery, $author_name);
+        $result = $this->executeSQL($sqlQuery, [$author_name]);
         return $result;
     }
 
@@ -42,7 +42,7 @@ class Author extends DatabaseConnection {
 
     function deleteAuthor($author_id) {
         $sqlQuery = "delete from author where author_id=?";
-        $result = $this->executeSQL($sqlQuery, $author_id);
+        $result = $this->executeSQL($sqlQuery, [$author_id]);
         return $result;
     }
 }

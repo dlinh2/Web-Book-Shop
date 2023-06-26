@@ -18,7 +18,7 @@ class Translator extends DatabaseConnection {
 
     function getTranslator($translator_id) {
         $sqlQuery = "select * from translator where translator_id=?";
-        $result = $this->executeSQL($sqlQuery, $translator_id);
+        $result = $this->executeSQL($sqlQuery, [$translator_id]);
         if ($result) {
             $this->data = $this->pdo_statement->fetch();
         }
@@ -27,7 +27,7 @@ class Translator extends DatabaseConnection {
 
     function addTranslator($translator_name) {
         $sqlQuery = "insert into translator values(NULL,?)";
-        $result = $this->executeSQL($sqlQuery, $translator_name);
+        $result = $this->executeSQL($sqlQuery, [$translator_name]);
         return $result;
     }
 
@@ -42,7 +42,7 @@ class Translator extends DatabaseConnection {
 
     function deleteTranslator($translator_id) {
         $sqlQuery = "delete from translator where translator_id=?";
-        $result = $this->executeSQL($sqlQuery, $translator_id);
+        $result = $this->executeSQL($sqlQuery, [$translator_id]);
         return $result;
     }
 }
