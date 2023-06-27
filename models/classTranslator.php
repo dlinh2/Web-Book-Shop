@@ -25,17 +25,18 @@ class Translator extends DatabaseConnection {
         return $result;
     }
 
-    function addTranslator($translator_name) {
-        $sqlQuery = "insert into translator values(NULL,?)";
-        $result = $this->executeSQL($sqlQuery, [$translator_name]);
+    function addTranslator($translator_name, $translator_bio="") {
+        $sqlQuery = "insert into translator values(NULL,?,?)";
+        $result = $this->executeSQL($sqlQuery, [$translator_name, $translator_bio]);
         return $result;
     }
 
-    function updateTranslator($translator_id, $translator_name) {
+    function updateTranslator($translator_id, $translator_name, $translator_bio="") {
         $sqlQuery = "update translator
-                    set translator_name=?
+                    set translator_name=?,
+                        translator_bio=?
                     where translator_id=?";
-        $param = [$translator_name, $translator_id];
+        $param = [$translator_name, $translator_bio, $translator_id];
         $result = $this->executeSQL($sqlQuery, $param);
         return $result;
     }

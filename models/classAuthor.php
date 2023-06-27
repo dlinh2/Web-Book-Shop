@@ -25,17 +25,18 @@ class Author extends DatabaseConnection {
         return $result;
     }
 
-    function addAuthor($author_name) {
-        $sqlQuery = "insert into author values(NULL,?)";
-        $result = $this->executeSQL($sqlQuery, [$author_name]);
+    function addAuthor($author_name, $author_bio="") {
+        $sqlQuery = "insert into author values(NULL,?,?)";
+        $result = $this->executeSQL($sqlQuery, [$author_name, $author_bio]);
         return $result;
     }
 
-    function updateAuthor($author_id, $author_name) {
+    function updateAuthor($author_id, $author_name, $author_bio="") {
         $sqlQuery = "update author
-                    set author_name=?
+                    set author_name=?.
+                        author_bio=?
                     where author_id=?";
-        $param = [$author_name, $author_id];
+        $param = [$author_name, $author_bio, $author_id];
         $result = $this->executeSQL($sqlQuery, $param);
         return $result;
     }

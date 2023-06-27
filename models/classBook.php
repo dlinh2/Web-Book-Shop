@@ -25,20 +25,55 @@ class Book extends DatabaseConnection {
         return $result;
     }
 
-    function addBook($name, $vnname="", $category_id, $author_id, $translator_id="", $publisher_id, 
+    function getBooksByAuthor($author_id) {
+        $sqlQuery = "select * from book where book_author_id=?";
+        $result = $this->executeSQL($sqlQuery, [$author_id]);
+        if ($result) {
+            $this->data = $this->pdo_statement->fetch();
+        }
+        return $result;
+    }
+
+    function getBooksByPublisher($publisher_id) {
+        $sqlQuery = "select * from book where book_publisher_id=?";
+        $result = $this->executeSQL($sqlQuery, [$publisher_id]);
+        if ($result) {
+            $this->data = $this->pdo_statement->fetch();
+        }
+        return $result;
+    }
+
+    function getBooksByTranslator($translator_id) {
+        $sqlQuery = "select * from book where book_translator_id=?";
+        $result = $this->executeSQL($sqlQuery, [$translator_id]);
+        if ($result) {
+            $this->data = $this->pdo_statement->fetch();
+        }
+        return $result;
+    }
+
+    function getBooksByCategory($category_id) {
+        $sqlQuery = "select * from book where book_category_id=?";
+        $result = $this->executeSQL($sqlQuery, [$category_id]);
+        if ($result) {
+            $this->data = $this->pdo_statement->fetch();
+        }
+        return $result;
+    }
+
+    function addBook($name, $category_id, $author_id, $translator_id="", $publisher_id, 
                      $status, $pages, $sizes, $date, $description, $price, $cover) {
-        $sqlQuery = "insert into book values(NULL,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-        $param = [$name, $vnname, $category_id, $author_id, $translator_id, $publisher_id, 
+        $sqlQuery = "insert into book values(NULL,?,?,?,?,?,?,?,?,?,?,?,?)";
+        $param = [$name, $category_id, $author_id, $translator_id, $publisher_id, 
                   $status, $pages, $sizes, $date, $description, $price, $cover];
         $result = $this->executeSQL($sqlQuery, $param);
         return $result;
     }
 
-    function updateBook($book_id, $name, $vnname="", $category_id, $author_id, $translator_id="", $publisher_id, 
+    function updateBook($book_id, $name, $category_id, $author_id, $translator_id="", $publisher_id, 
                         $status, $pages, $sizes, $date, $description, $price, $cover) {
         $sqlQuery = "update book
                     set book_name=?,
-                        book_vnname=?,
                         book_category_id=?,
                         book_author_id=?,
                         book_translator_id=?,
@@ -51,7 +86,7 @@ class Book extends DatabaseConnection {
                         book_price=?,
                         book_cover=?
                     where book_id=?";
-        $param = [$name, $vnname, $category_id, $author_id, $translator_id, $publisher_id, 
+        $param = [$name, $category_id, $author_id, $translator_id, $publisher_id, 
                   $status, $pages, $sizes, $date, $description, $price, $cover, $book_id];
         $result = $this->executeSQL($sqlQuery, $param);
         return $result;
