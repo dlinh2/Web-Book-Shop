@@ -52,6 +52,7 @@
         require_once("../../models/classAuthor.php");
         require_once("../../models/classPublisher.php");
         require_once("../../models/classTranslator.php");
+        require_once("../../models/classCategory.php");
         
         $authorObj = new Author();
         $result = $authorObj->getAuthorList();
@@ -73,6 +74,13 @@
             die("<p>Trouble connecting to database");
         $translators = $translatorObj->data;
         unset($translatorObj);
+
+        $categoryObj = new Category();
+        $result = $categoryObj->getCategoryList();
+        if (!$result)
+            die("<p>Trouble connecting to database");
+        $categories = $categoryObj->data;
+        unset($translatorObj);
     ?>
     <form name="form1" method="post" action="AddBookHandle.php" enctype="multipart/form-data">
         <table  border="0" align="center" cellpadding="5" cellspacing="0">
@@ -92,17 +100,6 @@
                 </td>
             </tr>
             <tr>
-                <td>Dịch giả</td>
-                <td>
-                    <select name="sTranslator" id="sTranslator">
-                        <option value="">Select translator</option>
-                        <?php foreach ($translators as $translator) { ?>
-                        <option value="<?=$translator["translator_id"] ?>"><?=$translator["translator_name"] ?></option>
-                        <?php } ?>
-                    </select>
-                </td>
-            </tr>
-            <tr>
                 <td>Nhà xuất bản</td>
                 <td>
                     <select name="sPublisher" id="sPublisher">
@@ -114,25 +111,47 @@
                 </td>
             </tr>
             <tr>
+                <td>Dịch giả</td>
+                <td>
+                    <select name="sTranslator" id="sTranslator">
+                        <option value="">Select translator</option>
+                        <?php foreach ($translators as $translator) { ?>
+                        <option value="<?=$translator["translator_id"] ?>"><?=$translator["translator_name"] ?></option>
+                        <?php } ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Nhóm</td>
+                <td>
+                    <select name="sCategory" id="sCategory">
+                        <option value="">Select category</option>
+                        <?php foreach ($categories as $category) { ?>
+                        <option value="<?=$category["category_id"] ?>"><?=$category["category_name"] ?></option>
+                        <?php } ?>
+                    </select>
+                </td>
+            </tr>
+            <tr>
                 <td>Tình trạng</td>
                 <td>
                     <label for="r1">Có</label>
-                    <input type="radio" name="rStatus" id="r1" value="0" checked>
+                    <input type="radio" name="rStatus" id="r1" value="1" checked>
                     <label for="r2">Không</label>
-                    <input type="radio" name="rStatus" id="r2" value="1">
+                    <input type="radio" name="rStatus" id="r2" value="0">
                 </td>
             </tr>
             <tr>
                 <td>Số trang</td>
-                <td><input type="text" name="tBookPages" id="tBookPages"></td>
+                <td><input type="text" name="tPages" id="tPages"></td>
             </tr>
             <tr>
                 <td>Kích thước</td>
-                <td><input type="text" name="tBookSizes" id="tBookSizes"></td>
+                <td><input type="text" name="tSizes" id="tSizes"></td>
             </tr>
             <tr>
                 <td>Ngày xuất bản</td>
-                <td><input type="date" name="fHinhanh" id="fHinhanh" required></td>
+                <td><input type="date" name="dPublishDate" id="dPublishDate" required></td>
             </tr>
             <tr>
                 <td>Giá tiền</td>
@@ -140,7 +159,7 @@
             </tr>
             <tr>
                 <td>Ảnh bìa</td>
-                <td><input type="file" name="fHinhanh" id="fHinhanh"></td>
+                <td><input type="file" name="fCover" id="fCover"></td>
             </tr>
             <tr>
                 <td>Mô tả</td>
