@@ -8,7 +8,7 @@
         include("../Header/Header.php");
         require_once("../../models/classPublisher.php");
         if (!isset($_POST["b1"])) {
-            die("<h3>Chưa nhập form</h3>");
+            die("<h1>Chưa nhập form</h1>");
         }
 
         $publisherName = $_POST["tPublisherName"];
@@ -19,9 +19,9 @@
             $message = "Thêm thành công";
             echo "<script type='text/javascript'>alert('$message');window.location.href='PublisherList.php';</script>";
         } else {
-            echo "<h3> Lỗi thêm dữ liệu\n";
+            echo "<h1> Lỗi thêm dữ liệu</h1>";
         }
         ?>
-        <a href="PublisherList.php">Danh sách nhà xuất bản</a>
+        <h1><a href="PublisherList.php">Danh sách nhà xuất bản</a></h1>
     </body>
 </html>

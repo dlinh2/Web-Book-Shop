@@ -8,7 +8,7 @@
         include("../Header/Header.php");
         require_once("../../models/classAuthor.php");
         if (!isset($_POST["b1"])) {
-            die("<h3>Chưa nhập form</h3>");
+            die("<h1>Chưa nhập form</h1>");
         }
 
         $authorName = $_POST["tAuthorName"];
@@ -20,9 +20,9 @@
             $message = "Cập nhật thành công";
             echo "<script type='text/javascript'>alert('$message');window.location.href='AuthorList.php';</script>";
         } else {
-            echo "<h3> Lỗi sửa dữ liệu";
+            echo "<h1> Lỗi sửa dữ liệu</h1>";
         }
         ?>
-        <a href="AuthorList.php">Danh sách tác giả</a>
+        <h1><a href="AuthorList.php">Danh sách tác giả</a></h1>
     </body>
 </html>

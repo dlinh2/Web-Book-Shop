@@ -8,7 +8,7 @@
         include("../Header/Header.php");
         require_once("../../models/classCategory.php");
         if (!isset($_POST["b1"])) {
-            die("<h3>Chưa nhập form</h3>");
+            die("<h1>Chưa nhập form</h1>");
         }
 
         $categoryName = $_POST["tCategoryName"];
@@ -21,9 +21,9 @@
             $message = "Cập nhật thành công";
             echo "<script type='text/javascript'>alert('$message');window.location.href='CategoryList.php';</script>";
         } else {
-            echo "<h3> Lỗi sửa dữ liệu";
+            echo "<h1> Lỗi sửa dữ liệu</h1>";
         }
         ?>
-        <a href="CategoryList.php">Danh sách nhóm</a>
+        <h1><a href="CategoryList.php">Danh sách nhóm</a></h1>
     </body>
 </html>

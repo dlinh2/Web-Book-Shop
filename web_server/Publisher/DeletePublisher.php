@@ -7,7 +7,7 @@
         <?php
         include("../Header/Header.php");
         if (!isset($_REQUEST["id"])) {
-            die("<p>Chưa chọn nhà xuất bản</p>");
+            die("<h1>Chưa chọn nhà xuất bản</h1>");
         }
         $id = $_REQUEST["id"];
         require_once("../../models/classPublisher.php");
@@ -18,7 +18,7 @@
             $message = "Xóa thành công";
             echo "<script type='text/javascript'>alert('$message');window.location.href='PublisherList.php';</script>";
         } else {
-            echo "<h3> Lỗi xóa dữ liệu";
+            echo "<h1> Lỗi xóa dữ liệu</h1>";
         }
         ?>
         <a href="PublisherList.php">Danh sách nhà xuất bản</a>

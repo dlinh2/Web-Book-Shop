@@ -68,9 +68,9 @@
             //header('Location: BookList.php');
             die();
         } else {
-            echo "<h3> Lỗi thêm dữ liệu";
+            echo "<h1> Lỗi thêm dữ liệu</h1>";
         }
         ?>
-        <a href="BookList.php">Danh sách</a>
+        <h1><a href="BookList.php">Danh sách</a></h1>
     </body>
 </html>

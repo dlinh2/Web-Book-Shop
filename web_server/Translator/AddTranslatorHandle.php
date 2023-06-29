@@ -8,7 +8,7 @@
         include("../Header/Header.php");
         require_once("../../models/classTranslator.php");
         if (!isset($_POST["b1"])) {
-            die("<h3>Chưa nhập form</h3>");
+            die("<h1>Chưa nhập form</h1>");
         }
 
         $translatorName = $_POST["tTranslatorName"];
@@ -19,9 +19,9 @@
             $message = "Thêm thành công";
             echo "<script type='text/javascript'>alert('$message');window.location.href='TranslatorList.php';</script>";
         } else {
-            echo "<h3> Lỗi thêm dữ liệu\n";
+            echo "<h1> Lỗi thêm dữ liệu</h1>";
         }
         ?>
-        <a href="TranslatorList.php">Danh sách nhóm dịch</a>
+        <h1><a href="TranslatorList.php">Danh sách nhóm dịch</a></h1>
     </body>
 </html>
