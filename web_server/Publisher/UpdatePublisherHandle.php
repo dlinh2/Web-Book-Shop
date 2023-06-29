@@ -12,7 +12,7 @@
         }
 
         $publisherName = $_POST["tPublisherName"];
-        $publisherDescription = $_POST["tPublisherDescription"];
+        $publisherDescription = $_POST["tDescription"];
         $publisherId = $_REQUEST["id"];
         $publisher = new Publisher();
         $result = $publisher->updatePublisher($publisherId, $publisherName, $publisherDescription);

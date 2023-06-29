@@ -60,7 +60,7 @@
 
             <tr>
                 <td width="155">Mô tả</td>
-                <td width="300"><input type="text" name="tPublisherDescription" id="tPublisherDescription" value="<?=$publisher["publisher_description"]?>"></td>
+                <td width="300"><input type="text" name="tDescription" id="tDescription" value="<?=$publisher["publisher_description"]?>"></td>
             </tr>
             
             <tr>
