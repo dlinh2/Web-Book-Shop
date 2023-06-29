@@ -17,9 +17,7 @@
         $result = $author->addAuthor($authorName, $authorBio);
         if ($result) {
             $message = "Thêm thành công";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-            header('Location: AuthorList.php');
-            die();
+            echo "<script type='text/javascript'>alert('$message');window.location.href='AuthorList.php';</script>";
         } else {
             echo "<h3> Lỗi thêm dữ liệu";
         }

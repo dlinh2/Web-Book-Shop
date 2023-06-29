@@ -19,9 +19,7 @@
         $result = $category->updateCategory($categoryId, $categoryName, $order, $status);
         if ($result) {
             $message = "Cập nhật thành công";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-            header('Location: CategoryList.php');
-            die();
+            echo "<script type='text/javascript'>alert('$message');window.location.href='CategoryList.php';</script>";
         } else {
             echo "<h3> Lỗi sửa dữ liệu";
         }

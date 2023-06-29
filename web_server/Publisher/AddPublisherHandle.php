@@ -17,9 +17,7 @@
         $result = $publisher->addPublisher($publisherName, $publisherDescription);
         if ($result) {
             $message = "Thêm thành công";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-            header('Location: PublisherList.php');
-            die();
+            echo "<script type='text/javascript'>alert('$message');window.location.href='PublisherList.php';</script>";
         } else {
             echo "<h3> Lỗi thêm dữ liệu\n";
         }

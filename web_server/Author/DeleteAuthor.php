@@ -16,9 +16,7 @@
         
         if ($result) {
             $message = "Xóa thành công";
-            echo "<script type='text/javascript'>alert('$message');</script>";
-            header('Location: AuthorList.php');
-            die();
+            echo "<script type='text/javascript'>alert('$message');window.location.href='AuthorList.php';</script>";
         } else {
             echo "<h3> Lỗi xóa dữ liệu";
         }
