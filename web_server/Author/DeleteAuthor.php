@@ -15,6 +15,8 @@
         $result = $authorObj->deleteAuthor($id);
         
         if ($result) {
+            $message = "Xóa thành công";
+            echo "<script type='text/javascript'>alert('$message');</script>";
             header('Location: AuthorList.php');
             die();
         } else {

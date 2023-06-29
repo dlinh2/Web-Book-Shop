@@ -17,6 +17,8 @@
         $publisher = new Publisher();
         $result = $publisher->updatePublisher($publisherId, $publisherName, $publisherDescription);
         if ($result) {
+            $message = "Cập nhật thành công";
+            echo "<script type='text/javascript'>alert('$message');</script>";
             header('Location: PublisherList.php');
             die();
         } else {

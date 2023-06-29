@@ -17,6 +17,8 @@
         $author = new Author();
         $result = $author->updateAuthor($authorId, $authorName, $authorBio);
         if ($result) {
+            $message = "Cập nhật thành công";
+            echo "<script type='text/javascript'>alert('$message');</script>";
             header('Location: AuthorList.php');
             die();
         } else {
