@@ -61,9 +61,11 @@ class Book extends DatabaseConnection {
         return $result;
     }
 
-    function addBook($name, $category_id, $author_id, $translator_id="", $publisher_id, 
+    function addBook($name, $category_id="", $author_id, $translator_id="", $publisher_id, 
                      $status, $pages, $sizes, $date, $description, $price, $cover) {
         $sqlQuery = "insert into book values(NULL,?,?,?,?,?,?,?,?,?,?,?,?)";
+        if ($category_id=="") $category_id = NULL;
+        if ($translator_id=="") $translator_id = NULL;
         $param = [$name, $category_id, $author_id, $translator_id, $publisher_id, 
                   $status, $pages, $sizes, $date, $description, $price, $cover];
         $result = $this->executeSQL($sqlQuery, $param);

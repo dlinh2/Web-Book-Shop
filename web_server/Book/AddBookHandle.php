@@ -64,7 +64,7 @@
                                  $status, $pages, $sizes, $publishDate, $description, $price, $cover);
         if ($result) {
             $message = "Thêm thành công";
-            echo "<script type='text/javascript'>alert('$message');window.location.href='BookList.php;'</script>";
+            echo "<script type='text/javascript'>alert('$message');window.location.href='BookList.php';</script>";
             //header('Location: BookList.php');
             die();
         } else {
