@@ -53,7 +53,7 @@
                     <td><?=$book["book_publish_date"]?></td>
                     <td><?=$book["book_price"] ?></td>
                     <td><?=$book["book_status"] ? "Có" : "Không" ?></td>
-                    <td><a href="UpdateBook.php">Sửa</a> - <a href="DeleteBook.php" onclick="return confirm('Có chắc là bạn muốn xóa?')">Xóa</a></td>
+                    <td><a href="UpdateBook.php?id=<?=$book["book_id"]?>">Sửa</a> - <a href="DeleteBook.php?id=<?=$book["book_id"]?>" onclick="return confirm('Có chắc là bạn muốn xóa?')">Xóa</a></td>
                 </tr>
             <?php } ?>
         </table>
