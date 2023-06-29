@@ -40,6 +40,7 @@
                 <th>Sizes</th>
                 <th>Publish date</th>
                 <th width="120px">Price</th>
+                <th>Status</th>
                 <th>Action</th>
             </tr>
             <?php foreach ($books as $book) { ?>
@@ -51,6 +52,7 @@
                     <td><?=$book["book_sizes"]?></td>
                     <td><?=$book["book_publish_date"]?></td>
                     <td><?=$book["book_price"] ?></td>
+                    <td><?=$book["book_status"] ? "Có" : "Không" ?></td>
                     <td><a href="UpdateBook.php">Sửa</a> - <a href="DeleteBook.php" onclick="return confirm('Có chắc là bạn muốn xóa?')">Xóa</a></td>
                 </tr>
             <?php } ?>
