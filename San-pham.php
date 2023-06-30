@@ -60,16 +60,18 @@
         $rows = $book->data;
         if($rows==NULL)
             die("<p> KHÔNG CÓ DỮ LIỆU </p>");
+        ?>
+        <div class="category">
+            <h1>Sản Phẩm</h1>
+        </div>
+        <?php
         foreach($rows as $row)
         {
             $bImg = $row["book_cover"]==""?"no-image.png":$row["book_cover"];
         ?>
-            <div class="category">
-                <h1>Sản Phẩm</h1>
-            </div>
             <div class="bookShelf">
             <div class="listImg">
-                <a href="BookDetail.php?id=" class="book"><img src="images/<?=$bImg?>"></a>
+                <a href="BookDetail.php?id=" class="book"><img src="img/<?=$bImg?>"></a>
                 <!-- <div class="popup" style="left:5px;  ">
                     <h1 class="name">Tắt đèn</h1>
                     <div class="description">

@@ -1,0 +1,191 @@
+
+.header {
+    background: url("img/headerbg.png") repeat-x scroll 50% 0 rgba(0,0,0,0);
+    width: 100%;
+    height: 150px
+}
+.wrapper{
+    width: 100%;
+    height: 40px;
+    background: rgba(216,216,216,.6);
+    font-size: 15px;
+    
+}
+.header .topnav {
+    float: left;
+    padding: 10px;
+    padding-left: 9%;
+    text-transform: uppercase
+}
+
+.header .topnav a {
+    color: #016600;
+}
+
+.header .topnav a:hover {
+    text-decoration: underline
+}
+.header .topnavR {
+    float: right;
+    padding: 10px;
+    padding-right: 40px;
+    text-transform: uppercase
+
+}
+
+.header .topnavR>li {
+    display: inline-block
+}
+
+.header .topnavR>li a {
+    color: #016600;
+}
+
+.header .topnavR a:hover {
+    text-decoration: underline
+}
+
+.header .topnavR>li a:before {
+    content: "|";
+    padding: 0 15px
+}
+
+.header .topnavR>li:first-child a:before {
+    content: "";
+    padding: 0
+}
+.header .mednav{
+    position: relative;
+    height: 80px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+}
+
+.header .logo {
+    max-height: 30%;
+    height: fit-content;
+    width: fit-content;
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform: translate(-50%, -130%);
+    
+}
+.header .logo img {
+    width: 250px;
+    height: auto;
+  }
+
+.header .cart{
+    background: url("img/cart.png") no-repeat scroll left center rgba(0,0,0,0);
+    background-size: 30px;
+    color: #000;
+    height: 55px;
+    position: absolute;
+    right: 20px;
+    text-indent: -500em;
+    text-transform: uppercase;
+    top: 20px;
+    width: 55px;
+    cursor: pointer
+}
+
+.header .search{
+    background: none repeat scroll 0 0 #fff;
+    border: 1px solid #ccc;
+    height: 28px;
+    width: 320px;
+    position: absolute;
+    top: 50%;
+    left: 60%;
+    transform: translate(-50%, 0%);
+    
+}
+
+.header .search .text {
+    background: none repeat scroll 0 0 #fff;
+    border: medium none;
+    color: #333;
+    float: left;
+    margin: 6px 0 0 8px;
+    padding: 2px;
+    width: 300px
+}
+.header .search .text::-webkit-input-placeholder {
+    color: #016600;
+    font-style: italic
+}
+
+.header .search .submit {
+    background: url("img/search.png") no-repeat center rgba(0,0,0,0);
+    background-size: 20px;
+    border: medium none;
+    display: block;
+    height: 30px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    text-indent: -100em;
+    width: 30px
+}
+#nav{
+    background: url("img/menubg.png");
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    text-align: left;
+    width: 100%;
+}
+
+#nav >li {
+    display: inline-block;
+    padding-left: 10%;
+    width: auto;
+    
+}
+#nav, .subnav {
+    list-style-type: none;
+}
+#nav li{
+    position: relative;
+}
+
+#nav >li>a {
+    color: #0f5731;
+    padding: 5px 10px;
+    text-transform: uppercase;
+}
+#nav li a{
+    color: #fff;
+    line-height: 50px;
+    padding: 0 24px;
+    display: block;
+}
+#nav li:hover .subnav {
+    display: block;
+ }
+#nav > li:hover > a{
+    color: #fff;
+    background-color: #0f5731;
+}
+#nav .subnav li:hover a{
+    color: #fff;
+    background-color: #016600;
+}
+#nav .subnav {
+    display: none; 
+    min-width: 184px;
+    position: absolute;
+    background-color: #0f5731;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+}
+#nav .subnav a {
+    color: #fff;
+    padding: 0 12px;
+    line-height: 38px;
+
+}
