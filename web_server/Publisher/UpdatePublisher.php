@@ -19,7 +19,7 @@
             });
         });
         tinymce.init({
-        selector: '#tPublisherDescription',
+        selector: '#tDescription',
         plugins: [
           'a11ychecker','advlist','advcode','advtable','autolink','checklist','export',
           'lists','link','image','charmap','preview','anchor','searchreplace','visualblocks',

@@ -111,7 +111,8 @@
         unset($translatorObj);
     ?>
     <form name="form1" method="post" action="UpdateBookHandle.php" enctype="multipart/form-data">
-        <input type="hidden" name="">
+        <input type="hidden" name="id" value="<?=$book["book_id"]?>">
+        <input type="hidden" name="cover" value="<?=$book["book_cover"]?>">
         <table  border="0" align="center" cellpadding="5" cellspacing="0">
             <tr>
                 <td width="155">Tên sách</td>

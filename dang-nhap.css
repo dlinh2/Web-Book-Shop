@@ -259,7 +259,7 @@ body{
 
 .validation-summary-errors {
     color: #b94a48;
-    ont-weight: bold;
+    font-weight: bold;
     color: red;
 }
 .form p {
@@ -290,7 +290,6 @@ input[type="checkbox"], input[type="radio"] {
 }
 
 input[type="submit"] {
-    -webkit-appearance: button;
     cursor: pointer;
 }
 

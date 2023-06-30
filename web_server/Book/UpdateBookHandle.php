@@ -10,6 +10,7 @@
         if (!isset($_POST["b1"])) {
             die("<h1>Chưa nhập form</h1>");
         }
+        require_once("UploadFile.php");
 
         $bookName = $_POST["tBookName"];
         $authorId = $_POST["sAuthor"];
@@ -21,7 +22,11 @@
         $sizes = $_POST["tSizes"];
         $publishDate = $_POST["dPublishDate"];
         $price = $_POST["tPrice"];
-        $cover = UploadFile("fCover", "img");
+        if (!isset($_FILES["fCover"])) {
+            $cover = $_POST["cover"];
+        } else {
+            $cover = UploadFile("fCover", "img");
+        }
         $description = $_POST["tDescription"];
         $id = $_REQUEST["id"];
         $book = new Book();
@@ -29,7 +34,7 @@
                                  $status, $pages, $sizes, $publishDate, $description, $price, $cover);
         if ($result) {
             $message = "Cập nhật thành công";
-            echo "<script type='text/javascript'>alert('$message');window.location.href='PublisherList.php';</script>";
+            echo "<script type='text/javascript'>alert('$message');window.location.href='BookList.php';</script>";
         } else {
             echo "<h1> Lỗi sửa dữ liệu</h1>";
         }
