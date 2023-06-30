@@ -8,7 +8,10 @@
     
 </head>
 <body>
-<div class="header">
+    <?php
+        require_once("../Login/LoggedinCheck.php");
+    ?>
+    <div class="header">
         <div class="wrapper">
             <ul class="topnav">
                 <a href="/BookShop/kiem-tra-don-hang.php">Kiểm tra đơn hàng</a>
