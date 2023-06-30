@@ -72,8 +72,10 @@ class Book extends DatabaseConnection {
         return $result;
     }
 
-    function updateBook($book_id, $name, $category_id, $author_id, $translator_id="", $publisher_id, 
+    function updateBook($book_id, $name, $category_id="", $author_id, $translator_id="", $publisher_id, 
                         $status, $pages, $sizes, $date, $description, $price, $cover) {
+        if ($category_id=="") $category_id = NULL;
+        if ($translator_id=="") $translator_id = NULL;
         $sqlQuery = "update book
                     set book_name=?,
                         book_category_id=?,

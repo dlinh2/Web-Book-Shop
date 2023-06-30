@@ -22,10 +22,11 @@
         $sizes = $_POST["tSizes"];
         $publishDate = $_POST["dPublishDate"];
         $price = $_POST["tPrice"];
-        if ($_FILES["fCover"] == NULL) {
+        
+        if ($_FILES["fCover"]["name"] == "") {
             $cover = $_POST["cover"];
         } else {
-            $cover = UploadFile("fCover", "img");
+            $cover = UploadFile("fCover", "../../img");
         }
         $description = $_POST["tDescription"];
         $id = $_REQUEST["id"];

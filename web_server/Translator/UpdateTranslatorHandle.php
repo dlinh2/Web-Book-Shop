@@ -18,7 +18,7 @@
         $result = $translator->updateTranslator($translatorId, $translatorName, $translatorBio);
         if ($result) {
             $message = "Cập nhật thành công";
-            echo "<script type='text/javascript'>alert('$message');</script>window.location.href='TranslatorList.php';";
+            echo "<script type='text/javascript'>alert('$message');window.location.href='TranslatorList.php';</script>";
         } else {
             echo "<h1> Lỗi sửa dữ liệu</h1>";
         }
