@@ -8,7 +8,8 @@
     <title>Trang chủ</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&subset=vietnamese' rel='stylesheet'
         type='text/css'>
-        <link rel="stylesheet" href="BookDetail.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" href="index.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" href="BookDetail.css?v=<?php echo time(); ?>">
 </head>
 
 <body>

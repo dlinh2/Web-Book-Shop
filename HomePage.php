@@ -6,7 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&subset=vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="index.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="HomePage.css?v=<?php echo time(); ?>">
+    <script>
+            function showSlides() {
+                let slides = document.getElementsByClassName("mySlides");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                if (slideIndex >= slides.length) {slideIndex = 0}
+                slides[slideIndex].style.display = "block";
+                slideIndex++;
+                setTimeout(showSlides, 4000); 
+            }
+
+            function currentSlide(slide) {
+                let slides = document.getElementsByClassName("mySlides");
+                for (i = 0; i < slides.length; i++) {
+                    slides[i].style.display = "none";
+                }
+                slides[slide].style.display = "block";
+                slideIndex = slide;
+            }
+        </script>
 </head>
 <body>
     <?php include_once("Header.php"); ?>
@@ -29,27 +51,15 @@
                 <div class="text">Sách tái bản</div>
             </div>
             <div style="text-align:center">
+                <span class="dot" onclick="currentSlide(0)"></span>
                 <span class="dot" onclick="currentSlide(1)"></span>
                 <span class="dot" onclick="currentSlide(2)"></span>
-                <span class="dot" onclick="currentSlide(3)"></span>
             </div>
 
         </div>
         <script>
             let slideIndex = 0;
             showSlides();
-
-            function showSlides() {
-                let i;
-                let slides = document.getElementsByClassName("mySlides");
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                }
-                slideIndex++;
-                if (slideIndex > slides.length) {slideIndex = 1}
-                slides[slideIndex-1].style.display = "block";
-                setTimeout(showSlides, 4000); // Change image every 2 seconds
-            }
         </script>
         <br>
     <div class="pageBody">

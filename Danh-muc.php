@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trang chủ</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&subset=vietnamese' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="index.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="Danh-muc.css?v=<?php echo time(); ?>">
 </head>
 <body>
