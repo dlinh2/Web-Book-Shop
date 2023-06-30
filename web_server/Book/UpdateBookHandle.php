@@ -22,7 +22,7 @@
         $sizes = $_POST["tSizes"];
         $publishDate = $_POST["dPublishDate"];
         $price = $_POST["tPrice"];
-        if (!isset($_FILES["fCover"])) {
+        if ($_FILES["fCover"] == NULL) {
             $cover = $_POST["cover"];
         } else {
             $cover = UploadFile("fCover", "img");

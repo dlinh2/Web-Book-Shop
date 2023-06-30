@@ -14,7 +14,7 @@
                 <a href="/BookShop/kiem-tra-don-hang.php">Kiểm tra đơn hàng</a>
             </ul>
             <ul class="topnavR">
-                <li><a href="../../HomePage.php">Đăng xuất</a></li>
+                <li><a href="../Login/Login.php">Đăng xuất</a></li>
             </ul>
         </div>
         <div class="mednav">
