@@ -6,7 +6,20 @@
     <link rel="stylesheet" href="Header.css?v=<?php echo time(); ?>">
 </head>
 <body>
-<div class="header">
+    <?php 
+        require_once("models/classCategory.php");
+
+        $categoryObj = new Category();
+        $result = $categoryObj->getCategoryList();
+        if (!$result) {
+            die("<h1>Trouble connecting to database</h1>");
+        }
+        $categoryObj->sortData();
+        $categories = array_filter($categoryObj->data, function($category) {
+            return $category["category_status"];
+        });
+    ?>
+    <div class="header">
         <div class="wrapper">
             <ul class= "topnav">
                 <a href="kiem-tra-don-hang.php">Kiểm tra đơn hàng</a>
@@ -36,10 +49,13 @@
             <li><a href="Gioi-thieu.php">Giới thiệu</a></li>
             <li>
                 <a action="">Danh mục sách</a>
+                
                 <ul class="subnav">
-                    <li><a href="Danh-muc.php?id=van-hoc-viet-nam">Văn học Việt Nam</a></li>
-                    <li><a href="Danh-muc.php?id=van-hoc-nuoc-ngoai">Văn học Nước Ngoài</a></li>
-                    <li><a href="Danh-muc.php?id=thieu-nhi">Thiếu nhi</a></li>
+                    <?php
+                        foreach ($categories as $category) {
+                    ?>
+                    <li><a href="Danh-muc.php?id=<?=$category["category_id"]?>&name=<?=$category["category_name"]?>"><?=$category["category_name"]?></a></li>
+                    <?php } ?>
                 </ul>
             </li>
             <li><a href="San-Pham.php">Sản phẩm</a></li>

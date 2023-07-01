@@ -29,7 +29,7 @@ class Book extends DatabaseConnection {
         $sqlQuery = "select * from book where book_author_id=?";
         $result = $this->executeSQL($sqlQuery, [$author_id]);
         if ($result) {
-            $this->data = $this->pdo_statement->fetch();
+            $this->data = $this->pdo_statement->fetchAll();
         }
         return $result;
     }
@@ -38,7 +38,7 @@ class Book extends DatabaseConnection {
         $sqlQuery = "select * from book where book_publisher_id=?";
         $result = $this->executeSQL($sqlQuery, [$publisher_id]);
         if ($result) {
-            $this->data = $this->pdo_statement->fetch();
+            $this->data = $this->pdo_statement->fetchAll();
         }
         return $result;
     }
@@ -47,7 +47,7 @@ class Book extends DatabaseConnection {
         $sqlQuery = "select * from book where book_translator_id=?";
         $result = $this->executeSQL($sqlQuery, [$translator_id]);
         if ($result) {
-            $this->data = $this->pdo_statement->fetch();
+            $this->data = $this->pdo_statement->fetchAll();
         }
         return $result;
     }
@@ -56,7 +56,7 @@ class Book extends DatabaseConnection {
         $sqlQuery = "select * from book where book_category_id=?";
         $result = $this->executeSQL($sqlQuery, [$category_id]);
         if ($result) {
-            $this->data = $this->pdo_statement->fetch();
+            $this->data = $this->pdo_statement->fetchAll();
         }
         return $result;
     }

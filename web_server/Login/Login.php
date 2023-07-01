@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="Login.css?v=<?php echo time(); ?>">
 </head>
 <body>
-    <?php 
-        session_abort();
-    ?>
     <div class="container">
         <div class="bookdetailwrap">
             <header class="pageheader">

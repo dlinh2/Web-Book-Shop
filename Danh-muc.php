@@ -12,37 +12,43 @@
 <body>
     <?php
         include_once("Header.php");
-          $id = "";
-          if(isset($_REQUEST["id"]))
-              $id = $_REQUEST["id"];
+        if(!isset($_REQUEST["id"]))
+            die("Chưa chọn danh mục");
+        $id = $_REQUEST["id"];
+        $name = $_REQUEST["name"];
     ?>
-    
     <div class="pageBody">
         <?php
             require_once("models/classBook.php");
         ?>
-        <?php
-        $book = new Book();
-        $ketqua_B = $book->getBookList();
-        if($ketqua_B==FALSE)
-            die("<p>LỖI TRUY VẤN DỮ LIỆU BOOK</p>");
-        $rows = $book->data;
-        if($rows==NULL)
-            die("<p> KHÔNG CÓ DỮ LIỆU </p>");
-        foreach($rows as $row)
-        {
-            $bImg = $row["book_cover"]==""?"no-image.png":$row["book_cover"];
-        ?>
-            <div class="category">
-                <h1>Văn Học Việt Nam</h1>
-            </div>
-            <div class="bookShelf">
-            <div class="listImg">
-                <a href="BookDetail.php?id=" class="book"><img src="images/<?=$bImg?>"></a>
-                
-            </div>
+        <div class="category">
+            <h1><?=$name?></h1>
         </div>
+        <?php
+        $bookObj = new Book();
+        $result = $bookObj->getBooksByCategory($id);
+        if(!$result)
+            die("<h1>Trouble connecting to database</h1>");
+        $books = array_filter($bookObj->data, function($book) {
+            return $book["book_status"];
+        });
+        
+        $chunks = array_chunk($books, 5);
+        foreach($chunks as $chunk)
+        {
+        ?>
+        <div class="bookShelf">
+        <?php
+            foreach ($chunk as $book)
+            {
+            $img = $book["book_cover"];
+        ?>
+            <a href="BookDetail.php?id=" class="book">
+                <img src="img/<?=$img?>" alt="alt.jpg">
+            </a>
         <?php } ?>
+        </div>
+        <?php }?>
     </div>
     <footer class="footer">
         Địa chỉ: Đường Nghiêm Xuân Yêm - Đại Kim - Hoàng Mai - Hà Nội</br>

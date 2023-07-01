@@ -15,56 +15,34 @@
         <?php
             require_once("models/classBook.php");
         ?>
-        <?php
-        $book = new Book();
-        $ketqua_B = $book->getBookList();
-        if($ketqua_B==FALSE)
-            die("<p>LỖI TRUY VẤN DỮ LIỆU BOOK</p>");
-        $rows = $book->data;
-        if($rows==NULL)
-            die("<p> KHÔNG CÓ DỮ LIỆU </p>");
-        ?>
         <div class="category">
             <h1>Sản Phẩm</h1>
         </div>
         <?php
-        foreach($rows as $row)
+        $bookObj = new Book();
+        $result = $bookObj->getBookList();
+        if(!$result)
+            die("<h1>Trouble connecting to database</h1>");
+        $books = array_filter($bookObj->data, function($book) {
+            return $book["book_status"];
+        });
+        
+        $chunks = array_chunk($books, 5);
+        foreach($chunks as $chunk)
         {
-            $bImg = $row["book_cover"]==""?"no-image.png":$row["book_cover"];
         ?>
-            <div class="bookShelf">
-            <div class="listImg">
-                <a href="BookDetail.php?id=" class="book"><img src="img/<?=$bImg?>"></a>
-                <!-- <div class="popup" style="left:5px;  ">
-                    <h1 class="name">Tắt đèn</h1>
-                    <div class="description">
-                        <ul>
-                            <li>Số trang: 231</li>
-                            <li>Kích thước: 14x20.5 cm </li>
-                            <li>Ngày phát hành: 30-07-2018</li>
-                        </ul>
-                    </div>
-                    <p class="price">48.000đ</p>
-                </div>   -->
-            </div>
-        </div>
+        <div class="bookShelf">
         <?php
-        }//đóng foreach
+            foreach ($chunk as $book)
+            {
+            $img = $book["book_cover"];
         ?>
-        <!-- <div class="category">
-            <h1>Sản phẩm</h1>
+            <a href="BookDetail.php?id=" class="book">
+                <img src="img/<?=$img?>" alt="alt.jpg">
+            </a>
+        <?php } ?>
         </div>
-        <div class="bookShelf" id="san-pham">
-            <div class="listImg">
-                <a href='BookDetail.php'><img src="img/lang-nghe-gio-hat.jpg"></a>
-                <a href='BookDetail.php'><img src="img/khoa-hoc-chay-bo.jpg"></a>
-                <a href='BookDetail.php'><img src="img/bau-troi-va-mat-dat.jpg"></a>
-                <a href='BookDetail.php'><img src="img/ngoi-thu-nhat.jpg"></a>
-                <a href='BookDetail.php'><img src="img/khan-goi-len-sao-hoa.jpg"><a>
-                <a href='BookDetail.php'><img src="img/quy-luat.jpg"></a>
-                <a href='BookDetail.php'><img src="img/hanh-trinh-yeu.jpg"><a>
-            </div>
-        </div> -->
+        <?php }?>
     </div>
     <footer class="footer">
         Địa chỉ: Đường Nghiêm Xuân Yêm - Đại Kim - Hoàng Mai - Hà Nội</br>

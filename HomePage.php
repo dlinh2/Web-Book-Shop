@@ -31,7 +31,11 @@
         </script>
 </head>
 <body>
-    <?php include_once("Header.php"); ?>
+    <?php 
+        include_once("Header.php");
+        require_once("models/classBook.php");
+        require_once("models/classCategory.php");
+    ?>
     <div class="slideshow-container">
         <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
@@ -62,66 +66,49 @@
         </script>
         <br>
     <div class="pageBody">
-        <?php
-            require_once("models/classBook.php");
-        ?>
-        <?php
-    $book = new Book();
-    $ketqua_B = $book->getBookList();
-    if($ketqua_B==FALSE)
-        die("<p>LỖI TRUY VẤN DỮ LIỆU BOOK</p>");
-    $rows = $book->data;
-    if($rows==NULL)
-        die("<p> KHÔNG CÓ DỮ LIỆU </p>");
-    foreach($rows as $row)
-    {
-        $bImg = $row["book_cover"]==""?"no-image.png":$row["book_cover"];
-    ?>
-        <a href='Danh-muc.php?id=sach-moi'>
-            <div class="category">
-                <h1>Sách Mới</h1>
-            </div>
-        </a>
-        <div class="bookShelf">
-            <div class="listImg">
-                <a href="BookDetail.php?id=" class="book"><img src="images/<?=$bImg?>"></a>
-                <!-- <div class="popup" style="left:5px;  ">
-                    <h1 class="name">Tắt đèn</h1>
-                    <div class="description">
-                        <ul>
-                            <li>Số trang: 231</li>
-                            <li>Kích thước: 14x20.5 cm </li>
-                            <li>Ngày phát hành: 30-07-2018</li>
-                        </ul>
-                    </div>
-                    <p class="price">48.000đ</p>
-                </div>   -->
-            </div>
-        </div>
-        <a href='Danh-muc.php?id=sach-ban-chay'>
-            <div class="category">
-                <h1>Sách Bán Chạy</h1>
-            </div>
-            <div class="bookShelf">
-            <div class="listImg">
-                <a href="BookDetail.php?id=>" class="book"><img src="images/<?=$bImg?>"></a>
-                <!-- <div class="popup" style="left:5px;  ">
-                    <h1 class="name">Tắt đèn</h1>
-                    <div class="description">
-                        <ul>
-                            <li>Số trang: 231</li>
-                            <li>Kích thước: 14x20.5 cm </li>
-                            <li>Ngày phát hành: 30-07-2018</li>
-                        </ul>
-                    </div>
-                    <p class="price">48.000đ</p>
-                </div>   -->
-            </div>
-        </div>
-        </a>
+        
     <?php
-    }//đóng foreach
+    $categoryObj = new Category();
+    $result = $categoryObj->getCategoryList();
+    if(!$result)
+        die("<h1>Trouble connecting to database</h1>");
+    $categoryObj->sortData();
+    $categories = array_filter($categoryObj->data, function($category) {
+        return $category["category_status"];
+    });
+
+    foreach ($categories as $category) {
     ?>
+    <a href='Danh-muc.php?id=<?=$category["category_id"]?>'>
+        <div class="category">
+            <h2><?=$category["category_name"]?></h2>
+        </div>
+    </a>
+    <?php
+    $bookObj = new Book();
+    $result = $bookObj->getBooksByCategory($category["category_id"]);
+    if(!$result)
+        die("<h1>Trouble connecting to database</h1>");
+    $books = array_slice($bookObj->data, 0, 10);
+    if (count($books) == 0) continue;
+    $chunks = array_chunk($books, 5);
+    foreach($chunks as $chunk)
+    {
+    ?>
+    <div class="bookShelf">
+    <?php
+        foreach ($chunk as $book)
+        {
+    ?>
+        <a href="BookDetail.php?id=<?=$book["book_id"]?>" class="book">
+            <img src="img/<?=$book["book_cover"]?>" alt="alt.png">
+        </a>
+        
+        
+    <?php } ?>
+    </div>
+    <?php }?>
+    <?php }?>
         <!-- <a href='/BookShop/Danh-muc.php'>
             <div class="category">
                 <h1>Sách Mới</h1>
@@ -148,22 +135,6 @@
                 <a href='/BookShop/BookDetail.php'><img src="img/quy-luat.jpg"></a>
                 <a href='/BookShop/BookDetail.php'><img src="img/hanh-trinh-yeu.jpg"><a>
             </div>
-        </div>
-        <a href='/BookShop/Danh-muc.php'>
-            <div class="category">
-                <h1>Sách bán chạy</h1>
-            </div>
-        </a>
-        <div class="bookShelf" id="sach-ban-chay">
-            <div class="listImg">
-                <a href='/BookShop/BookDetail.php'><img src="img/ngoi-thu-nhat.jpg"></a>
-                <a href='/BookShop/BookDetail.php'><img src="img/hoang-tu-be.jpg"></a>
-                <a href='/BookShop/BookDetail.php'><img src="img/ngay-moi.jpg"></a>
-                <a href='/BookShop/BookDetail.php'><img src="img/di-tim-dora.jpg"></a>
-                <a href='/BookShop/BookDetail.php'><img src="img/mot-lit-nuoc-mat.jpg"></a>
-                <a href='/BookShop/BookDetail.php'><img src="img/nha-gia-kim.jpg"></a>
-            </div>
-            <p class="shelf"></p>
         </div>
          -->
     </div>

@@ -47,4 +47,12 @@ class Category extends DatabaseConnection {
         $result = $this->executeSQL($sqlQuery, [$category_id]);
         return $result;
     }
+
+    function sortData() {
+        usort($this->data, "compare");
+    }
+}
+
+function compare($cat1, $cat2) {
+    return $cat1["category_order"] - $cat2["category_order"];
 }

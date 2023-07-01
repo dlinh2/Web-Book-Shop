@@ -8,38 +8,43 @@
     margin-bottom: 10%;
 }
 .pageBody .category {
-    background: url(img/menubg.png);
-    display: block;
-    text-align: center;
-    width: 200px;
-    height: auto;
-    padding: 10px;
+    background-image: url(img/lbcenter.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: auto;
+    max-width: 300px;
+    height: 80px;
     color: #fff;
     margin: 0 auto;
-    margin-bottom: 10%;
+    margin-bottom: 30px;
     margin-top: 10%;
 }
-.pageBody .bookShelf{
+
+.bookShelf {
     width: 100%;
-    max-width: 100%;
-    height: auto;
-    margin: 10px auto 0;
-    position: relative;
-    
-}
-.listImg{
-    width: 100%;
-    margin-left: 10%;
-    margin-right: 10%;
-    bottom: 0px;
+    height: 320px;
+    margin: 0px auto 0px;
+    background-image: url(img/book_bg.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
 }
 
-.listImg img{
-    width: 250px;
-    height: auto;
-    padding-right: 30px;
-    padding-top: 30px;
-    
+.book {
+    min-height: 200px;
+    margin-top: 45px;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.book img {
+    height: 200px;
 }
 
 

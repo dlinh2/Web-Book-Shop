@@ -5,7 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../Header/Header.css?v=<?php echo time(); ?>">
-    
+    <script>
+        function logout() {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "../Login/Logout.php", true);
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+            window.location.href = "../Login/Login.php"; 
+            }
+        };
+        xhr.send();
+        }
+    </script>
 </head>
 <body>
     <?php
@@ -17,7 +28,7 @@
                 <a href="/BookShop/kiem-tra-don-hang.php">Kiểm tra đơn hàng</a>
             </ul>
             <ul class="topnavR">
-                <li><a href="../Login/Login.php">Đăng xuất</a></li>
+                <li><a href="../Login/Login.php" onclick="logout()">Đăng xuất</a></li>
             </ul>
         </div>
         <div class="mednav">
