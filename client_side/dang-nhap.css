@@ -1,37 +1,5 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing:border-box
-}
-html {
-    font-family: sans-serif;
-    -ms-text-size-adjust: 100%;
-    -webkit-text-size-adjust: 100%
-}
-header{
-    display: block
-}
-a {
-    background: transparent;
-    text-decoration: none
-}
-h1 {
-    font-size: 24px
-}
-
-h2 {
-    font-size: 18px
-}
-
-h3 {
-    font-size: 12px
-}
-body{
-    background: url(../../img/bg_pattern.jpg)
-}
-
 .container {
-    background: url(../../img/headerbg.png);
+    background: url(../img/headerbg.png);
     margin: 40px auto;
     padding: 30px;
     width: 940px;
@@ -41,7 +9,7 @@ body{
     width: 98%;
     padding: 0;
     margin: 0 auto;
-    background: url(../..//headerbg.png) repeat scroll 0 0 rgba(0,0,0,0);
+    background: url(../img/headerbg.png) repeat scroll 0 0 rgba(0,0,0,0);
     box-shadow: 0 0 4px #444;
     min-height: 300px;
 }
@@ -130,8 +98,14 @@ legend {
     padding: 0;
 }
 
-.login_failed {
-    margin-top: 10px;
-    color: red;
-    font-style: italic;
+footer{
+    background: url(../img/menubg.png);
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    color: #fff;
+    border-top: 4px solid rgba(216,216,216,.8);
+    padding: 20px;
+    position: sticky;
+    top: 100%;
 }

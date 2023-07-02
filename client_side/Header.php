@@ -4,10 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Header.css?v=<?php echo time(); ?>">
+    <script>
+        function openCart() {
+            console.log(1);
+            cart = document.getElementById("cart-modal");
+            cart.style.display = "block";
+        }
+
+        function closeCart() {
+            cart = document.getElementById("cart-modal");
+            cart.style.display = "none";
+        }
+    </script>
 </head>
 <body>
     <?php 
-        require_once("models/classCategory.php");
+        require_once("../models/classCategory.php");
 
         $categoryObj = new Category();
         $result = $categoryObj->getCategoryList();
@@ -32,7 +44,7 @@
         <div class="mednav">
             <a href="HomePage.php">
                 <div class="logo">
-                    <img src="img/logo.png" alt="Book Shop">
+                    <img src="../img/logo.png" alt="Book Shop">
                 </div>
             </a>
             <div class="search">
@@ -41,8 +53,8 @@
                     <input type="submit" value="Tìm kiếm" class="submit" />
                 </form>
             </div>
-            <div class="cart" id="cart">
-                Giỏ hàng (<span id="cartcount">0</span>)
+            <div class="cart" id="cart" onclick="openCart()">
+                
             </div>
         </div>
         <ul id="nav">
@@ -54,12 +66,32 @@
                     <?php
                         foreach ($categories as $category) {
                     ?>
-                    <li><a href="Danh-muc.php?id=<?=$category["category_id"]?>&name=<?=$category["category_name"]?>"><?=$category["category_name"]?></a></li>
+                    <li><a href="Danh-muc.php?type=category&id=<?=$category["category_id"]?>&name=<?=$category["category_name"]?>"><?=$category["category_name"]?></a></li>
                     <?php } ?>
                 </ul>
             </li>
             <li><a href="San-Pham.php">Sản phẩm</a></li>
         </ul>
+        <div id="cart-modal">
+                <div class="modal-wrap">
+                    <div class="modal-title">
+                        Giỏ hàng 
+                        <span class="close" onclick="closeCart()">&times;</span>
+                    </div>
+                    <div class="modal-content">
+                        <div id="cart-items">
+                        <?php
+                        if (!isset($_SESSION["cart"]) || count($_SESSION["cart"]))  {
+                            echo "Không có sản phẩm nào trong giỏ";
+                        } else {
+                        ?>
+
+                        <?php } ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -16,11 +16,6 @@
             </header>
             <article class="form">
                 <form action="LoginHandle.php" method="post">
-                    <div class="validation-summary-errors">
-                        <ul>
-                            <li style="display:none"></li>
-                        </ul>
-                    </div>
                     <p>
                         <label for="Username">Username</label>
                         <input id="username" name="username" type="text" />
