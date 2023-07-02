@@ -144,9 +144,9 @@
                 <td>Dịch giả</td>
                 <td>
                     <select name="sTranslator" id="sTranslator">
-                        <option value="<?=($book_translator == NULL) ? "" : $book_translator["translator_id"]?>"><?=($book_translator == NULL) ? "Select translator" : $book_translator["translator_name"]?></option>
+                        <option value="">Select Translator</option>
                         <?php foreach ($translators as $translator) { ?>
-                        <option value="<?=$translator["translator_id"] ?>"><?=$translator["translator_name"] ?></option>
+                        <option value="<?=$translator["translator_id"] ?>" <?php if ($book_translator != NULL) if ($translator["translator_id"] == $book_translator["translator_id"]) echo "selected" ?>><?=$translator["translator_name"]?></option>
                         <?php } ?>
                     </select>
                 </td>
@@ -155,9 +155,9 @@
                 <td>Nhóm</td>
                 <td>
                     <select name="sCategory" id="sCategory">
-                        <option value="<?=($book_category == NULL) ? "" : $book_category["category_id"]?>"><?=($book_category == NULL) ? "Select category" : $book_category["category_name"]?></option>
+                        <option value="">Select category</option>
                         <?php foreach ($categories as $category) { ?>
-                        <option value="<?=$category["category_id"] ?>"><?=$category["category_name"] ?></option>
+                        <option value="<?=$category["category_id"] ?>" <?php if ($book_category != NULL) if ($category["category_id"] == $book_category["category_id"]) echo "selected" ?>><?=$category["category_name"] ?></option>
                         <?php } ?>
                     </select>
                 </td>

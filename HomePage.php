@@ -103,8 +103,6 @@
         <a href="BookDetail.php?id=<?=$book["book_id"]?>" class="book">
             <img src="img/<?=$book["book_cover"]?>" alt="alt.png">
         </a>
-        
-        
     <?php } ?>
     </div>
     <?php }?>

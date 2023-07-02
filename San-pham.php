@@ -35,10 +35,9 @@
         <?php
             foreach ($chunk as $book)
             {
-            $img = $book["book_cover"];
         ?>
-            <a href="BookDetail.php?id=" class="book">
-                <img src="img/<?=$img?>" alt="alt.jpg">
+            <a href="BookDetail.php?id=<?=$book["book_id"]?>" class="book">
+                <img src="img/<?=$book["book_cover"]?>" alt="alt.jpg">
             </a>
         <?php } ?>
         </div>
