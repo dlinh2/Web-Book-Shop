@@ -98,6 +98,11 @@ legend {
     padding: 0;
 }
 
+.error {
+    color: red;
+    font-style: italic;
+}
+
 footer{
     background: url(../img/menubg.png);
     width: 100%;
