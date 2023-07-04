@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang chủ</title>
+    <title>Chi tiết sách</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&subset=vietnamese' rel='stylesheet'
         type='text/css'>
     <link rel="stylesheet" href="index.css?v=<?php echo time(); ?>">
@@ -46,18 +46,36 @@
             $translator = $translatorObj->data;
         }
     ?>
+    <script>
+        function addToCart() {
+            var row = {
+                id: <?=$book["book_id"]?>,
+                title: "<?$book["book_name"]?>",
+                quantity: 1,
+                unitPrice: <?=$book["book_price"] ?>
+            }
+            rowString = JSON.stringify(row);
+            
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "cart.php?function=addToCart&row=" + encodeURIComponent(rowString), true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    console.log(response);
+                }
+            };
+            xhr.send();
+        }
+    </script>
     <div class="bookdetailwrap">
         <div class="bookdetail clearfix">
-            <a class="image image0" href="/sach/19271/nha-gia-kim">
-                
-                <img src="../img/<?=$book["book_cover"] ?>" alt="Nhà giả kim">
-                
-                <span class="overlay"></span>
+            <a class="image image0" href="">
+                <img src="../img/<?=$book["book_cover"] ?>" alt="">
             </a>
     
             <div class="info">
                 <h1>
-                    <a href="/sach/19271/nha-gia-kim"><?=$book["book_name"]?></a>
+                    <?=$book["book_name"]?>
                 </h1>
                 <div class="intro clearfix">
                     <div class="attributes">
@@ -106,9 +124,8 @@
     
                         </div>
     
-    
-                        <a href="" class="addtocart" data-id="19271" data-state="0">Thêm vào giỏ hàng</a>
-                        <a href="" class="buynow" data-id="19271" data-state="0">Mua ngay</a>
+                        <a href="" class="addtocart" onclick="addToCart(); openCart();">Thêm vào giỏ hàng</a>
+                        <a href="" class="buynow" >Mua ngay</a>
 
                     </div>
                 </div>

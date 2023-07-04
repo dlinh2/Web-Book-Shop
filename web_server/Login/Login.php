@@ -28,7 +28,7 @@
                         <div class="login_failed"><?php echo $_COOKIE["error"] ?></div>
                     <?php } ?>
                     <p>
-                        <input type="submit" class="btn" name="bSubmit" value="Đăng nhập" />
+                        <input type="submit" class="btn" name="bSubmit" value="Đăng nhập" onclick="return passwordCheck() && confirmPasswordCheck() && usernameCheck();"/>
                     </p>
                 </form>
             </article>

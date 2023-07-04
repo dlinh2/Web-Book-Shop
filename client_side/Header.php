@@ -15,6 +15,17 @@
             cart = document.getElementById("cart-modal");
             cart.style.display = "none";
         }
+
+        function logout() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "Logout.php", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                window.location.href = "HomePage.php"; 
+                }
+            };
+            xhr.send();
+        }
     </script>
 </head>
 <body>
@@ -37,8 +48,17 @@
                 <a href="kiem-tra-don-hang.php">Kiểm tra đơn hàng</a>
             </ul>
             <ul class="topnavR">
-                <li><a href="dang-ky.php">Đăng ký</a></li>
-                <li><a href="dang-nhap.php">Đăng nhập</a></li>
+                <?php 
+                    session_start();
+                    if (isset($_SESSION["user"])) { ?>
+                        <li>Xin chào <?=$_SESSION["user"] ?></li>
+                        <li><a href="HomePage.php" onclick="logout()">ĐĂNG XUẤT</a></li>
+                <?php
+                    } else {
+                ?>
+                    <li><a href="dang-ky.php">ĐĂNG KÝ</a></li>
+                    <li><a href="dang-nhap.php">ĐĂNG NHẬP</a></li>
+                <?php } ?>
             </ul>
         </div>
         <div class="mednav">

@@ -22,8 +22,8 @@ if ($row == NULL) {
     setcookie("error", "Sai tài khoản hoặc mật khẩu.", time()+1, "/", "", 0);
 } else {
     session_start();
-    $_SESSION["loggedin"] = true;
-    $_SESSION["username"] = $user;
+    $_SESSION["adminloggedin"] = true;
+    $_SESSION["admin"] = $user;
     header("Location: ../Book/BookList.php");
     setcookie("success", "Đăng nhập thành công.", time()+1, "/", "", 0);
 }
