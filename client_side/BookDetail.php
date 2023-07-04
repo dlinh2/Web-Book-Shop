@@ -50,7 +50,7 @@
         function addToCart() {
             var row = {
                 id: <?=$book["book_id"]?>,
-                title: "<?$book["book_name"]?>",
+                title: "<?=$book["book_name"]?>",
                 quantity: 1,
                 unitPrice: <?=$book["book_price"] ?>
             }
@@ -109,7 +109,7 @@
 
                     <div class="action">
                         <div class="price">
-                            <p>Giá BookShop: <span><?=$book["book_price"] ?></span></p>
+                            <p>Giá BookShop: <span><?=number_format($book["book_price"], 0, '.', '.') ?>đ</span></p>
                         </div>
                         <div class="quantitytext">
                             Số lượng:
@@ -124,7 +124,7 @@
     
                         </div>
     
-                        <a href="" class="addtocart" onclick="addToCart(); openCart();">Thêm vào giỏ hàng</a>
+                        <a href="javascript:;" class="addtocart" onclick="addToCart(); openCart();">Thêm vào giỏ hàng</a>
                         <a href="" class="buynow" >Mua ngay</a>
 
                     </div>

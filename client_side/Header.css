@@ -236,3 +236,21 @@
     text-decoration: none;
     cursor: pointer;
 }
+
+.items-table {
+    width: 100%;
+    text-align: center;
+}
+
+.items-row {
+    height: 35px;
+}
+
+.items-table>thead {
+    height: 35px;
+}
+
+.book-title {
+    color: rgb(134, 6, 6);
+    font-weight: 700;
+}

@@ -4,9 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Header.css?v=<?php echo time(); ?>">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
+        function updateCart() {
+            $.ajax({
+                url: "cart.php?function=getCartItems", // Include the action parameter in the URL
+                method: "GET",
+                dataType: "html",
+                success: function(response) {
+                    $("#cart-items").html(response);
+                },
+                error: function(xhr, status, error) {
+                    console.log(error);
+                }
+            });
+        }
         function openCart() {
-            console.log(1);
+            updateCart();
             cart = document.getElementById("cart-modal");
             cart.style.display = "block";
         }
@@ -14,6 +28,19 @@
         function closeCart() {
             cart = document.getElementById("cart-modal");
             cart.style.display = "none";
+        }
+
+        function deleteFromCart(id) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "cart.php?function=deleteFromCart&id=" + id, true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    console.log(response);
+                }
+            };
+            xhr.send();
+            updateCart();
         }
 
         function logout() {
@@ -31,7 +58,7 @@
 <body>
     <?php 
         require_once("../models/classCategory.php");
-
+        session_start();
         $categoryObj = new Category();
         $result = $categoryObj->getCategoryList();
         if (!$result) {
@@ -49,7 +76,7 @@
             </ul>
             <ul class="topnavR">
                 <?php 
-                    session_start();
+                    
                     if (isset($_SESSION["user"])) { ?>
                         <li>Xin chào <?=$_SESSION["user"] ?></li>
                         <li><a href="HomePage.php" onclick="logout()">ĐĂNG XUẤT</a></li>
@@ -99,15 +126,7 @@
                         <span class="close" onclick="closeCart()">&times;</span>
                     </div>
                     <div class="modal-content">
-                        <div id="cart-items">
-                        <?php
-                        if (!isset($_SESSION["cart"]) || count($_SESSION["cart"]))  {
-                            echo "Không có sản phẩm nào trong giỏ";
-                        } else {
-                        ?>
-
-                        <?php } ?>
-                        </div>
+                        <div id="cart-items"></div>
                     </div>
                 </div>
             </div>
