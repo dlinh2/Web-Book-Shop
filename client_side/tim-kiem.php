@@ -21,7 +21,7 @@
             require_once("../models/classBook.php");
         ?>
         <div class="category">
-            <h1>Kết quả tìm kiếm: <?=$_REQUEST["q"]?></h1>
+            <h1>Kết quả tìm kiếm</h1>
         </div>
         <?php
         $bookObj = new Book();

@@ -14,7 +14,7 @@
 .mySlide{
     display: none;
 }
-.text,.numbertext{
+.slide-text,.numbertext{
     display: none;
 }
 
@@ -46,7 +46,7 @@
 
 
 .pageBody{
-    overflow:hidden; 
+    overflow: hidden; 
     max-width: 80%;
     margin-left: 10%;
     margin-right: 10%;
@@ -170,13 +170,3 @@ footer{
     top: 100%;
 
 }
-
-
-
-
-
-
-
-
-
-

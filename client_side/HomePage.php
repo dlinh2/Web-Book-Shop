@@ -9,26 +9,26 @@
     <link rel="stylesheet" href="index.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="HomePage.css?v=<?php echo time(); ?>">
     <script>
-            function showSlides() {
-                let slides = document.getElementsByClassName("mySlides");
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                }
-                if (slideIndex >= slides.length) {slideIndex = 0}
-                slides[slideIndex].style.display = "block";
-                slideIndex++;
-                setTimeout(showSlides, 4000); 
+        function showSlides() {
+            let slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
             }
+            if (slideIndex >= slides.length) {slideIndex = 0}
+            slides[slideIndex].style.display = "block";
+            slideIndex++;
+            setTimeout(showSlides, 4000); 
+        }
 
-            function currentSlide(slide) {
-                let slides = document.getElementsByClassName("mySlides");
-                for (i = 0; i < slides.length; i++) {
-                    slides[i].style.display = "none";
-                }
-                slides[slide].style.display = "block";
-                slideIndex = slide;
+        function currentSlide(slide) {
+            let slides = document.getElementsByClassName("mySlides");
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
             }
-        </script>
+            slides[slide].style.display = "block";
+            slideIndex = slide;
+        }
+    </script>
 </head>
 <body>
     <?php 
@@ -40,19 +40,19 @@
         <div class="mySlides fade">
             <div class="numbertext">1 / 3</div>
                 <img src="../img/anh1.jpg" style="width:100%">
-                <div class="text">Sách hay tặng bé</div>
+                <div class="slide-text">Sách hay tặng bé</div>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">2 / 3</div>
                 <img src="../img/anh2.jpg" style="width:100%">
-                <div class="text">Sách mới</div>
+                <div class="slide-text">Sách mới</div>
             </div>
 
             <div class="mySlides fade">
                 <div class="numbertext">3 / 3</div>
                 <img src="../img/anh3.jpg" style="width:100%">
-                <div class="text">Sách tái bản</div>
+                <div class="slide-text">Sách tái bản</div>
             </div>
             <div style="text-align:center">
                 <span class="dot" onclick="currentSlide(0)"></span>
