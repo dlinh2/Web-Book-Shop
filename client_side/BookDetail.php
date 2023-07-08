@@ -67,10 +67,10 @@
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var response = xhr.responseText;
                     console.log(response);
+                    updateCart();
                 }
             };
             xhr.send(params);
-            updateCart();
         }
 
         function addToCart() {
