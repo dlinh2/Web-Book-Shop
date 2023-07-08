@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,7 +9,7 @@
     <script>
         function updateCart() {
             $.ajax({
-                url: "cart.php?function=getCartItems", // Include the action parameter in the URL
+                url: "cart.php?function=getCartItems", 
                 method: "GET",
                 dataType: "html",
                 success: function(response) {
@@ -32,7 +33,7 @@
 
         function deleteFromCart(id) {
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "cart.php?function=deleteFromCart&id=" + id, true);
+            xhr.open("POST", "cart.php?function=deleteFromCart&id=" + id, true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var response = xhr.responseText;
@@ -58,11 +59,10 @@
 <body>
     <?php 
         require_once("../models/classCategory.php");
-        session_start();
         $categoryObj = new Category();
         $result = $categoryObj->getCategoryList();
         if (!$result) {
-            die("<h1>Trouble connecting to database</h1>");
+            die("<h1 class='die-msg'>Trouble connecting to database</h1>");
         }
         $categoryObj->sortData();
         $categories = array_filter($categoryObj->data, function($category) {

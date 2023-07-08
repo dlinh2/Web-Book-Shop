@@ -22,7 +22,7 @@
         $bookObj = new Book();
         $result = $bookObj->getBookList();
         if(!$result)
-            die("<h1>Trouble connecting to database</h1>");
+            die("<h1 class='die-msg'>Trouble connecting to database</h1>");
         $books = array_filter($bookObj->data, function($book) {
             return $book["book_status"];
         });

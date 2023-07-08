@@ -254,3 +254,20 @@
     color: rgb(134, 6, 6);
     font-weight: 700;
 }
+
+.modal-action {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.next {
+    margin-right: 20px;
+    background-color: #00870a;
+    color: #fff;
+    cursor: pointer;
+    font-size: 13px;
+    padding: 5px 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+}

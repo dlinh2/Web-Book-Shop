@@ -6,7 +6,7 @@ function addToCart($row) {
     }
     foreach($_SESSION["cart"] as $crow) {
         if ($crow->id == $row->id) {
-            $crow->quantity++;
+            $crow->quantity += $row->quantity;
             return;
         }
     }
@@ -45,7 +45,9 @@ function getCartItems() {
         $cartContent .= '<tr><td colspan="5" style="border-bottom: 1px solid black;"></td></tr>';
         $cartContent .= '<tr><td/><td/><td/><td/><td>'.number_format($totalPrice, 0, '.', '.').'đ</td></tr>';
         $cartContent .= '</tbody></table>';
-        
+        $cartContent .= '<div class="modal-action">';
+        $cartContent .= '<a href="Order.php" class="next">Xác nhận đặt hàng</a>';
+        $cartContent .= '</div>';
     }
     echo $cartContent;
 }
@@ -61,6 +63,16 @@ if (isset($_GET["function"])) {
     if ($function == "getCartItems") {
         getCartItems();
     } elseif ($function == "deleteFromCart" && isset($_GET["id"])) {
+        deleteFromCart($_GET["id"]);
+    } elseif ($function == "addToCart" && isset($_GET["row"])) {
+        $row = json_decode($_GET["row"]);
+        addToCart($row);
+    }
+}
+
+if (isset($_POST["function"])) {
+    $function = $_POST["function"];
+    if ($function == "deleteFromCart" && isset($_GET["id"])) {
         deleteFromCart($_GET["id"]);
     } elseif ($function == "addToCart" && isset($_GET["row"])) {
         $row = json_decode($_GET["row"]);

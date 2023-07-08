@@ -16,7 +16,7 @@
     <?php 
         include_once("Header.php"); 
         if (!isset($_REQUEST["id"])) {
-            die("Chưa chọn sản phẩm");
+            die("<h1 class='die-msg'>Chưa chọn sản phẩm</h1>");
         }
         $id = $_REQUEST["id"];
         require_once("../models/classBook.php");
@@ -25,39 +25,50 @@
 
         $bookObj = new Book();
         $result = $bookObj->getBookById($id);
-        if (!$result) die("<h1>Trouble connecting to database</h1>");
+        if (!$result) die("<h1 class='die-msg'>Trouble connecting to database</h1>");
         $book = $bookObj->data;
 
         $authorObj = new Author();
         $result = $authorObj->getAuthorById($book["book_author_id"]);
-        if (!$result) die("<h1>Trouble connecting to database</h1>");
+        if (!$result) die("<h1 class='die-msg'>Trouble connecting to database</h1>");
         $author = $authorObj->data;
 
         $publisherObj = new Publisher();
         $result = $publisherObj->getPublisherById($book["book_publisher_id"]);
-        if (!$result) die("<h1>Trouble connecting to database</h1>");
+        if (!$result) die("<h1 class='die-msg'>Trouble connecting to database</h1>");
         $publisher = $publisherObj->data;
 
         if ($book["book_translator_id"] != NULL) {
             require_once("../models/classTranslator.php");
             $translatorObj = new Translator();
             $result = $translatorObj->getTranslatorById($book["book_translator_id"]);
-            if (!$result) die("<h1>Trouble connecting to database</h1>");
+            if (!$result) die("<h1 class='die-msg'>Trouble connecting to database</h1>");
             $translator = $translatorObj->data;
         }
     ?>
     <script>
+        function upQtyClick() {
+            document.getElementById("quantity").value++;
+        }
+
+        function downQtyClick() {
+            quantity = document.getElementById("quantity");
+            if (quantity.value > 1) {
+                quantity.value--;
+            }
+        }
+
         function addToCart() {
             var row = {
                 id: <?=$book["book_id"]?>,
                 title: "<?=$book["book_name"]?>",
-                quantity: 1,
+                quantity: document.getElementById("quantity").value,
                 unitPrice: <?=$book["book_price"] ?>
             }
             rowString = JSON.stringify(row);
             
             var xhr = new XMLHttpRequest();
-            xhr.open("GET", "cart.php?function=addToCart&row=" + encodeURIComponent(rowString), true);
+            xhr.open("POST", "cart.php?function=addToCart&row=" + encodeURIComponent(rowString), true);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var response = xhr.responseText;
@@ -65,6 +76,7 @@
                 }
             };
             xhr.send();
+            updateCart();
         }
     </script>
     <div class="bookdetailwrap">
@@ -116,7 +128,7 @@
                         </div>
     
                         <div class="quantity">
-                            <input type="text" value="1" onkeypress="return KeyPressQty(event)" class="tbQty" name="qty" id="quantity" style="color: red;">
+                            <input type="text" value="1" class="tbQty" name="qty" id="quantity" style="color: red;">
                             <span class="arrowBlock">
                                 <a class="upQty" href="javascript: upQtyClick();"></a>
                                 <a class="downQty" href="javascript: downQtyClick();"></a>

@@ -67,6 +67,4 @@ class Invoice extends DatabaseConnection {
         }
         return $result;
     }
-
-
 }

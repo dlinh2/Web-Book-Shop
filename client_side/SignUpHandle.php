@@ -13,7 +13,7 @@ $db = new DatabaseConnection();
 $query = "select * from account where username=? and type='user'";
 $result = $db->executeSQL($query, [$username]);
 if (!$result) {
-    die("<h1>Trouble connecting to database</h1>");
+    die("<h1 class='die-msg'>Trouble connecting to database</h1>");
 }
 $row = $db->pdo_statement->fetch();
 if ($row != NULL) {

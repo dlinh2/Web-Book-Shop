@@ -13,7 +13,7 @@
     <?php
         include_once("Header.php");
         if(!isset($_REQUEST["id"]))
-            die("Chưa chọn danh mục");
+            die("<h1 class='die-msg'>Chưa chọn danh mục</h1>");
         $id = $_REQUEST["id"];
         $name = $_REQUEST["name"];
         $type = $_REQUEST["type"];
@@ -37,7 +37,7 @@
             $result = $bookObj->getBooksByTranslator($id);
             
         if(!$result)
-            die("<h1>Trouble connecting to database</h1>");
+            die("<h1 class='die-msg'>Trouble connecting to database</h1>");
         $books = array_filter($bookObj->data, function($book) {
             return $book["book_status"];
         });

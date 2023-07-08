@@ -1,6 +1,6 @@
 <?php
 if (!isset($_REQUEST["bSubmit"])) {
-    echo "Chưa " . "<a href='Login.php'>đăng nhập</a>";
+    echo "<h1 class='die-msg'>Chưa " . "<a href='Login.php'>đăng nhập</a></h1>";
     die();
 }
 
@@ -13,7 +13,7 @@ $db = new DatabaseConnection();
 $query = "select * from account where username=? and password=? and type='user'";
 $result = $db->executeSQL($query, [$user, $pass]);
 if (!$result) {
-    die("<h1>Trouble connecting to database</h1>");
+    die("<h1 class='die-msg'>Trouble connecting to database</h1>");
 }
 $row = $db->pdo_statement->fetch();
 
@@ -24,6 +24,7 @@ if ($row == NULL) {
     session_start();
     $_SESSION["loggedin"] = true;
     $_SESSION["user"] = $user;
+    $_SESSION["user_id"] = $row["account_id"];
     if (isset($_POST["RememberMe"])) {
         setcookie('username', $user, time() + (86400 * 30), '/');
         setcookie('password', $pass, time() + (86400 * 30), '/');

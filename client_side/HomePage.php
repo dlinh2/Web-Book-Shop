@@ -71,7 +71,7 @@
     $categoryObj = new Category();
     $result = $categoryObj->getCategoryList();
     if(!$result)
-        die("<h1>Trouble connecting to database</h1>");
+        die("<h1 class='die-msg'>Trouble connecting to database</h1>");
     $categoryObj->sortData();
     $categories = array_filter($categoryObj->data, function($category) {
         return $category["category_status"];

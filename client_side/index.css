@@ -31,3 +31,8 @@ h3 {
 body{
     background: url(../img/bg_pattern.jpg)
 }
+
+.die-msg {
+    margin-top: 50px;
+    text-align: center;
+}
