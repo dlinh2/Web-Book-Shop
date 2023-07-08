@@ -24,9 +24,6 @@
     ?>
     <div class="header">
         <div class="wrapper">
-            <ul class="topnav">
-                <a href="/BookShop/kiem-tra-don-hang.php">Kiểm tra đơn hàng</a>
-            </ul>
             <ul class="topnavR">
                 <li><a href="../Login/Login.php" onclick="logout()">Đăng xuất</a></li>
             </ul>
@@ -42,6 +39,7 @@
             <li><a href="../Publisher/PublisherList.php">Nhà xuất bản</a></li>
             <li><a href="../Category/CategoryList.php">Nhóm sản phẩm</a></li>
             <li><a href="../Book/BookList.php">Sách</a></li>
+            <li><a href="../Order/ShowOrder.php">Đơn hàng</a></li>
         </ul>
     </div>
 </body>
