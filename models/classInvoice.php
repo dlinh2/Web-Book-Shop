@@ -8,10 +8,10 @@ class Invoice extends DatabaseConnection {
         parent::__construct();
     }
 
-    function addInvoice($cart, $account_id=NULL, $custName, $custPhone, $custAddress, $invoiceStatus) {
-        $sqlQuery = "insert into invoice values(NULL,?,?,?,?,?,?)";
+    function addInvoice($cart, $username=NULL, $custName, $custPhone, $custEmail, $custAddress, $invoiceStatus) {
+        $sqlQuery = "insert into invoice values(NULL,?,?,?,?,?,?,?)";
         $datetime = date('Y-m-d H:i:s');
-        $param = [$datetime, $account_id, $custName, $custPhone, $custAddress, $invoiceStatus];
+        $param = [$datetime, $username, $custName, $custPhone, $custEmail, $custAddress, $invoiceStatus];
         $result = $this->executeSQL($sqlQuery, $param);
         foreach ($cart as $row) {
             $sqlQuery = "insert into book_order values((select MAX(invoice_id) from invoice),?, ?, ?)";
@@ -50,5 +50,12 @@ class Invoice extends DatabaseConnection {
         $sqlQuery = "delete from invoice where invoice_id = ?";
         $result2 = $this->executeSQL($sqlQuery, [$invoiceId]);
         return $result1 && $result2;
+    }
+
+    function updateInvoiceStatus($invoiceId, $status) {
+        $sqlQuery = "update invoice set invoice_status=? where invoice_id=?";
+        $param = [$status, $invoiceId];
+        $result = $this->executeSQL($sqlQuery, $param);
+        return $result;
     }
 }

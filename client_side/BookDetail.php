@@ -60,14 +60,16 @@
 
         function clearCart() {
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "cart.php?function=clearCart", true);
+            xhr.open("POST", "cart.php", true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            params = "function=clearCart";
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var response = xhr.responseText;
                     console.log(response);
                 }
             };
-            xhr.send();
+            xhr.send(params);
             updateCart();
         }
 
@@ -81,14 +83,16 @@
             rowString = JSON.stringify(row);
             
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "cart.php?function=addToCart&row=" + encodeURIComponent(rowString), true);
+            xhr.open("POST", "cart.php", true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            params = "function=addToCart&row=" + encodeURIComponent(rowString);
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var response = xhr.responseText;
                     console.log(response);
                 }
             };
-            xhr.send();
+            xhr.send(params);
             updateCart();
         }
     </script>

@@ -33,14 +33,16 @@
 
         function deleteFromCart(id) {
             var xhr = new XMLHttpRequest();
-            xhr.open("POST", "cart.php?function=deleteFromCart&id=" + id, true);
+            xhr.open("POST", "cart.php", true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            params = "function=deleteFromCart&id=" + id;
             xhr.onreadystatechange = function() {
                 if (xhr.readyState === 4 && xhr.status === 200) {
                     var response = xhr.responseText;
                     console.log(response);
                 }
             };
-            xhr.send();
+            xhr.send(params);
             updateCart();
         }
 

@@ -66,20 +66,17 @@ if (isset($_GET["function"])) {
     $function = $_GET["function"];
     if ($function == "getCartItems") {
         getCartItems();
-    } elseif ($function == "deleteFromCart" && isset($_GET["id"])) {
-        deleteFromCart($_GET["id"]);
-    } elseif ($function == "addToCart" && isset($_GET["row"])) {
-        $row = json_decode($_GET["row"]);
-        addToCart($row);
-    }
+    } 
 }
 
 if (isset($_POST["function"])) {
     $function = $_POST["function"];
-    if ($function == "deleteFromCart" && isset($_GET["id"])) {
-        deleteFromCart($_GET["id"]);
-    } elseif ($function == "addToCart" && isset($_GET["row"])) {
-        $row = json_decode($_GET["row"]);
+    if ($function == "addToCart" && isset($_POST["row"])) {
+        $row = json_decode($_POST["row"]);
         addToCart($row);
+    } elseif ($function == "deleteFromCart" && isset($_POST["id"])) {
+        deleteFromCart($_POST["id"]);
+    } elseif ($function == "clearCart") {
+        clearCart();
     }
 }

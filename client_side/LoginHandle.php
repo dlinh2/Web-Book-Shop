@@ -24,7 +24,6 @@ if ($row == NULL) {
     session_start();
     $_SESSION["loggedin"] = true;
     $_SESSION["user"] = $user;
-    $_SESSION["user_id"] = $row["account_id"];
     if (isset($_POST["RememberMe"])) {
         setcookie('username', $user, time() + (86400 * 30), '/');
         setcookie('password', $pass, time() + (86400 * 30), '/');

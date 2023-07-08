@@ -8,53 +8,78 @@
     <title>Trang chủ</title>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&subset=vietnamese' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="ShowOrder.css?v=<?php echo time(); ?>">
+    <script>
+        
 
+        function updateStatus(option, invoiceId) {
+            var status = option.value;
+            if (status != previousStatus) {
+                if (confirm('Bạn có muốn cập nhật trạng thái? (Sau khi cập nhật sẽ gửi mail cho khách hàng)')) {
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", "UpdateStatus.php", true);
+                    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                    params = "id=" + invoiceId + "&status=" + option.value;
+                    xhr.onreadystatechange = function() {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            var response = xhr.responseText;
+                            console.log(response);
+                            window.location.reload();
+                        }
+                    };
+                    xhr.send(params);
+                    
+                } else {
+                    option.value = previousStatus;
+                }
+            }
+        }
+    </script>
 </head>
 <body>
     <?php
         include("../Header/Header.php");
-        require_once("../../models/classOrder.php");
-        $orderObj = new Order();
-        $result = $orderObj->getOrderList();
+        require_once("../../models/classInvoice.php");
+        $invoiceObj = new Invoice();
+        $result = $invoiceObj->getInvoiceList();
         if (!$result)
             die("<p>Trouble connecting to database");
-        $orders = $orderObj->data;
-        unset($orderObj);
+        $invoices = $invoiceObj->data;
+        unset($invoiceObj);
     ?>
 
-    <div class="table_wrap">
+    <div class="body-content">
         <h1>DANH SÁCH ĐƠN HÀNG</h1>
         <br>
         <table>
             <tr>
-                <th width="150px">ID đơn hàng</th>
-                <th width="250px">Thời gian đặt hàng</th>
-                <th width="100px">ID account</th>
-                <th width="250px">Tên khách hàng</th>
-                <th width="150px">Số điện thoại</th>
-                <th width="250px">Địa chỉ</th>
-                <th width="250px">Trạng thái</th>
-                <th width="150px">Quản lý</th>
+                <th width="50px">ID</th>
+                <th width="100px">Thời gian</th>
+                <th width="100px">Người dùng</th>
+                <th>Tên khách hàng</th>
+                <th width="100px">Số điện thoại</th>
+                <th>Email</th>
+                <th width="120px">Trạng thái</th>
+                <th width="80px">Quản lý</th>
             </tr>
 
-            <?php foreach ($orders as $invoice) { ?>
+            <?php foreach ($invoices as $invoice) { ?>
                 <tr>
                     <td><?=$invoice["invoice_id"]?></td>
                     <td><?=$invoice["invoice_datetime"]?></td>
-                    <td><?=$invoice["account_id"]?></td>
+                    <td><?=$invoice["username"]?></td>
                     <td><?=$invoice["customer_name"]?></td>
                     <td><?=$invoice["customer_phone"]?></td>
-                    <td><?=$invoice["customer_address"] ?></td>
+                    <td><?=$invoice["customer_email"] ?></td>
                     <td>
-                        <select>
-                            <option value="">Chọn trạng thái</option>
-                            <option value="confirmed" label="Đã xác nhận">Đã xác nhận</option>
-                            <option value="not-delivered" label="Chưa giao">Chưa giao</option>
-                            <option value="delivered" label="Đã giao">Đã giao</option>
+                        <select id="status" onchange="updateStatus(this, <?=$invoice['invoice_id']?>);">
+                            <option value="Chờ xử lý" <?php if ($invoice["invoice_status"]=="Chờ xử lý") echo "selected" ?>>Chờ xử lý</option>
+                            <option value="Đã xác nhận" <?php if ($invoice["invoice_status"]=="Đã xác nhận") echo "selected" ?>>Đã xác nhận</option>
+                            <option value="Đang giao" <?php if ($invoice["invoice_status"]=="Đang giao") echo "selected" ?>>Đang giao</option>
+                            <option value="Đã thanh toán" <?php if ($invoice["invoice_status"]=="Đã thanh toán") echo "selected" ?>>Đã thanh toán</option>
                         </select>
+                        <script>var previousStatus = document.getElementById("status").value;</script>
                     </td>
-                    <td><a href="viewDetailOrder.php?invoice_id=<?=$invoice['invoice_id']?>">Xem</a></td>
-
+                    <td><a href="viewDetailOrder.php?id=<?=$invoice['invoice_id']?>">Xem</a> - <a href="DeleteInvoice.php?id=<?=$invoice['invoice_id']?>" onclick="return confirm('Có chắc là bạn muốn xóa? (Đơn hàng sẽ không thể khôi phục)')">Xóa</a></td>
                 </tr>
             <?php } ?>
 

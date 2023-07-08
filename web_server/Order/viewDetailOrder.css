@@ -38,20 +38,8 @@ body{
     border-radius: 10px;
 }
 
-table {
-    margin: 0 auto;
-    width: 1000px;
-    
-}
-
 td {
     height: 50px;
-}
-
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    text-align: center;
 }
 
 .add_link {
@@ -64,4 +52,47 @@ table, th, td {
     margin-left: auto;
     margin-right: auto;
     height: 100px
+}
+
+.cust-info {
+    border: 1px black solid;
+    margin: 10px;
+    padding: 10px;
+}
+
+.items-wrap {
+    margin: 5px;
+    padding: 5px;
+}
+
+legend {
+    font-size: large;
+    font-weight: bold;
+}
+
+.cust-info table {
+    margin-left: 20px;
+}
+
+.order-items {
+    margin-top: 50px;
+}
+
+.order-items {
+    width: 100%;
+}
+
+.order-items {
+    border: 1px solid black;
+    border-collapse: collapse;
+    background: white;
+}
+
+.order-items th,tbody {
+    border: 1px solid black;
+}
+
+.order-items tbody tr {
+    text-align: center;
+    height: 30px;
 }

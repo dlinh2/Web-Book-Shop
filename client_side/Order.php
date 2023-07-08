@@ -129,10 +129,6 @@
                             </tr>
                             <tr><td></td><td id="addressError" class="errorMsg"></td></tr>
                         </table>
-                    <?php 
-                        if (isset($_SESSION["user"])) { ?>
-                            <input type="hidden" value="<?=$_SESSION["user_id"]?>" name="custId" id="custId">
-                    <?php } ?>
                     </fieldset>
                     <div class="buttons" align="center">
                         <input type="submit" name="b1" id="b1" value="Đồng ý" class="button" onclick="return checkForm()">
