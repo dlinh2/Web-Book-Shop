@@ -30,7 +30,7 @@
         </div>
         <div class="mednav">
             <div class="logo">
-                <a href="/BookShop/homePage.php"><img src="../../img/logo.png" alt="Book Shop"> </a>
+                <a href="../../client_side/HomePage.php"><img src="../../img/logo.png" alt="Book Shop"> </a>
             </div>
         </div>
         <ul id="nav">
