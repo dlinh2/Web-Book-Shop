@@ -23,6 +23,7 @@
         $invoiceObj = new Invoice();
         $result = $invoiceObj->addInvoice($_SESSION["cart"], isset($_SESSION["user_id"]) ? $_SESSION["user_id"] : NULL, $_POST["custName"], $_POST["custPhone"], $_POST["custAddress"], "Chờ xử lý");
         if ($result) {
+            $_SESSION["cart"] = array();
             echo "<div>Đơn hàng đã được đặt thành công. Vui lòng kiểm tra mail để xem tình trạng đơn hàng. <a href='HomePage.php'>Quay lại trang chủ</a></div>";
         } else {
             echo "Có lỗi xảy ra. Đặt hàng không thành công";

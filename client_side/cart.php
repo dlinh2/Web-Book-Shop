@@ -58,6 +58,10 @@ function deleteFromCart($id) {
     });
 }
 
+function clearCart() {
+    $_SESSION["cart"] = array();
+}
+
 if (isset($_GET["function"])) {
     $function = $_GET["function"];
     if ($function == "getCartItems") {

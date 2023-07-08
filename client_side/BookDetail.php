@@ -58,6 +58,19 @@
             }
         }
 
+        function clearCart() {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "cart.php?function=clearCart", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    console.log(response);
+                }
+            };
+            xhr.send();
+            updateCart();
+        }
+
         function addToCart() {
             var row = {
                 id: <?=$book["book_id"]?>,
@@ -137,7 +150,7 @@
                         </div>
     
                         <a href="javascript:;" class="addtocart" onclick="addToCart(); openCart();">Thêm vào giỏ hàng</a>
-                        <a href="" class="buynow" >Mua ngay</a>
+                        <a href="Order.php" class="buynow" onclick="clearCart(); addToCart();">Mua ngay</a>
 
                     </div>
                 </div>
