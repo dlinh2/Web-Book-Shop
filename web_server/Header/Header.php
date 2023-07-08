@@ -24,9 +24,6 @@
     ?>
     <div class="header">
         <div class="wrapper">
-            <ul class="topnav">
-                <a href="/BookShop/kiem-tra-don-hang.php">Kiểm tra đơn hàng</a>
-            </ul>
             <ul class="topnavR">
                 <li><a href="../Login/Login.php" onclick="logout()">Đăng xuất</a></li>
             </ul>
