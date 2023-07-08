@@ -95,7 +95,7 @@
                 </div>
             </a>
             <div class="search">
-                <form action="/tim-kiem" method="GET">
+                <form action="tim-kiem.php" method="GET">
                     <input type="text" name="q" placeholder="Tìm kiếm sách..." class="text" />
                     <input type="submit" value="Tìm kiếm" class="submit" />
                 </form>

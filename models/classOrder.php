@@ -17,6 +17,24 @@ class Order extends DatabaseConnection {
         return $result;
     }
 
+    function searchBook($search){
+        $sqlQuery = "select * from book where book_name like '%".$search."%'";
+        $result = $this->executeSQL($sqlQuery);
+        if ($result) {
+            $this->data = $this->pdo_statement->fetchAll();
+        }
+        return $result;
+    }
+
+    function searchInvoice($search){
+        $sqlQuery = "select * from invoice where invoice_id like '%".$search."%'";
+        $result = $this->executeSQL($sqlQuery);
+        if ($result) {
+            $this->data = $this->pdo_statement->fetchAll();
+        }
+        return $result;
+    }
+
 }
 
 class Detail extends DatabaseConnection {
@@ -67,4 +85,6 @@ class Invoice extends DatabaseConnection {
         }
         return $result;
     }
+
+
 }

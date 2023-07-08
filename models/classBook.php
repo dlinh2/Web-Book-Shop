@@ -101,4 +101,14 @@ class Book extends DatabaseConnection {
         $result = $this->executeSQL($sqlQuery, [$book_id]);
         return $result;
     }
+
+    function searchBook($search){
+        $sqlQuery = "select * from book where book_name like '%".$search."%'";
+        $result = $this->executeSQL($sqlQuery);
+        if ($result) {
+            $this->data = $this->pdo_statement->fetchAll();
+        }
+        return $result;
+    }
+
 }
