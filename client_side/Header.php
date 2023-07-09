@@ -5,20 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Header.css?v=<?php echo time(); ?>">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
         function updateCart() {
-            $.ajax({
-                url: "cart.php?function=getCartItems", 
-                method: "GET",
-                dataType: "html",
-                success: function(response) {
-                    $("#cart-items").html(response);
-                },
-                error: function(xhr, status, error) {
-                    console.log(error);
+            var xhr = new XMLHttpRequest();
+            xhr.open("GET", "cart.php?function=getCartItems", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    var response = xhr.responseText;
+                    document.getElementById("cart-items").innerHTML = response;
+                } else {
+                    console.log(xhr.statusText);
                 }
-            });
+            };
+            xhr.send();
         }
         function openCart() {
             updateCart();
