@@ -12,11 +12,48 @@
 <body>
     <?php include_once("Header.php"); ?>
     <div class="bodyP">
+        <?php if (!isset($_SESSION["user"])) {?>
         <div class="pHeader">
             <h1>Vui lòng đăng nhập để sử dụng tính năng này</h1>
         </div>
-        
-
+        <?php } else { 
+            require_once("../models/classInvoice.php");
+            $invoiceObj = new Invoice();
+            $result = $invoiceObj->getInvoicesByAccount($_SESSION["user"]);
+            if (!$result) {
+                echo "<h1>Trouble connecting to database</h1>";
+            } else { 
+                $invoices = $invoiceObj->data;
+        ?>
+            <div class="table-wrap">
+                <h1>Lịch sử giao dịch</h1>
+                <table width="100%">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã đơn hàng</th>
+                            <th>Người mua</th>
+                            <th>Địa chỉ</th>
+                            <th>Ngày mua</th>
+                            <th>Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $i=1;foreach ($invoices as $invoice) { ?>
+                            <tr>
+                                <td><?=$i++?></td>
+                                <td><?=$invoice["invoice_id"] ?></td>
+                                <td><?=$invoice["customer_name"]?></td>
+                                <td><?=$invoice["customer_address"]?></td>
+                                <td><?=$invoice["invoice_datetime"]?></td>
+                                <td><?=$invoice["invoice_status"]?></td>
+                            </tr>
+                        <?php } ?>
+                    </tbody>
+                </table>
+            </div>
+            <?php }
+        } ?>
     </div>
 
     </div>

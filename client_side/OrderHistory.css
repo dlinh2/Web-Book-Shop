@@ -12,6 +12,22 @@
     padding-top: 1em;
 }
 
+.table-wrap {
+    margin: 20px;
+    padding: 20px;
+}
+
+.table-wrap table {
+    margin-top: 30px;
+    border: 1px solid black;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.table-wrap th, .table-wrap td {
+    border: 1px solid black;
+    height: 30px;
+}
 
 /* footer */
 footer{

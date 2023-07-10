@@ -44,6 +44,15 @@ class Invoice extends DatabaseConnection {
         return $result1 && $result2;
     }
 
+    function getInvoicesByAccount($username) {
+        $sqlQuery = "select * from invoice where username=?";
+        $result = $this->executeSQL($sqlQuery, [$username]);
+        if ($result) {
+            $this->data = $this->pdo_statement->fetchAll();
+        }
+        return $result;
+    }
+
     function deleteInvoice($invoiceId) {
         $sqlQuery = "delete from book_order where invoice_id = ?";
         $result1 = $this->executeSQL($sqlQuery, [$invoiceId]);

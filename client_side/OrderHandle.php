@@ -24,7 +24,22 @@
         $result = $invoiceObj->addInvoice($_SESSION["cart"], isset($_SESSION["user"]) ? $_SESSION["user"] : NULL, $_POST["custName"], $_POST["custPhone"], $_POST["custEmail"], $_POST["custAddress"], "Chờ xử lý");
         if ($result) {
             $_SESSION["cart"] = array();
-            echo "<div>Đơn hàng đã được đặt thành công. Vui lòng kiểm tra mail để xem tình trạng đơn hàng. <a href='HomePage.php'>Quay lại trang chủ</a></div>";
+            echo "<div>Đơn hàng đã được đặt thành công. ";
+            $to = $_POST["custEmail"];
+            $subject = "This is the subject";
+            $message = "This is the message body";
+            $headers = "From: agenthanh0210@gmail.com\r\n";
+            $headers .= "Content-Type: text/plain; charset=utf-8\r\n";
+
+            // Send the email
+            $mailSent = mail($to, $subject, $message, $headers);
+
+            if ($mailSent) {
+                echo "Vui lòng kiểm tra mail để xem tình trạng đơn hàng.";
+            } else {
+                echo "Gửi mail thất bại.";
+            }
+            echo "<a href='HomePage.php'>Quay lại trang chủ</a></div>";
         } else {
             echo "Có lỗi xảy ra. Đặt hàng không thành công";
         }
