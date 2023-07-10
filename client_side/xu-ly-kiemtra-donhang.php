@@ -28,20 +28,21 @@
         unset($invoiceObj);
     ?>
 
-    <div>
+    <div class = "bodyP">
         <div class="pHeader">
             <h1>Kiểm tra đơn hàng</h1>
-            <br>
-            <div class="checkorder">
-                <div class="form">
-                    <form action="xu-ly-kiemtra-donhang.php",method="REQUEST">
-                        <input name="orderid" placeholder="Nhập mã đơn hàng của bạn" class="text" />
-                        <input type="submit" value="Tìm mã" class="submit" />
-                    </form>
-                </div>
-
+        </div>
+        <br>
+        <div class="checkorder">
+            <div class="form">
+                <form action="xu-ly-kiemtra-donhang.php",method="REQUEST">
+                    <input name="orderid" placeholder="Nhập mã đơn hàng của bạn" class="text" />
+                    <input type="submit" value="Tìm mã" class="submit" />
+                </form>
             </div>
-            <div class="body-content">
+        </div>
+        <div class="body-content">
+            <?php if ($invoice != NULL && count($invoice) > 1) { ?>
             <fieldset class="cust-info">
                 <legend>Thông tin đơn hàng</legend>
                 <table>
@@ -99,6 +100,9 @@
                     </tr>
                 </table>
             </div>
+            <?php } else { 
+                echo "<h3 style='color: red'>Không tìm thấy đơn hàng</h3>";
+            }?>
         </div>
     </div>
 
