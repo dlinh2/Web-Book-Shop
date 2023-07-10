@@ -10,27 +10,27 @@
     <link rel="stylesheet" href="kiem-tra-don-hang.css?v=<?php echo time(); ?>">
 </head>
 <body>
-    <?php include_once("Header.php"); ?>
+    <?php 
+        include_once("Header.php"); 
+    ?>
+
     <div class="bodyP">
         <div class="pHeader">
             <h1>Kiểm tra đơn hàng</h1>
-        </div>
-        <div class="checkorder">
-            <div class="form">
-                <form action="/kiem-tra-don-hang" method="GET">
-                    <input name="orderid" placeholder="Nhập mã đơn hàng của bạn" class="text" />
-                    <input type="submit" value="Tìm mã" class="submit" />
-                </form>
+            <div class="checkorder">
+                <div class="form">
+                    <form action="xu-ly-kiemtra-donhang.php",method="REQUEST">
+                        <input name="orderid" placeholder="Nhập mã đơn hàng của bạn" class="text" />
+                        <input type="submit" value="Tìm mã" class="submit" />
+                    </form>
+                </div>
 
             </div>
         </div>
-
-    </div>
-
     </div>
     <footer class="footer">
-        Địa chỉ: Đường Nghiêm Xuân Yêm - Đại Kim - Hoàng Mai - Hà Nội</br>
-        Hộ trợ kỹ thuật: 0123456789 (Nhóm dự án công nghệ thông tin)
+            Địa chỉ: Đường Nghiêm Xuân Yêm - Đại Kim - Hoàng Mai - Hà Nội</br>
+            Hộ trợ kỹ thuật: 0123456789 (Nhóm dự án công nghệ thông tin)
     </footer>
 </body>
 </html>
