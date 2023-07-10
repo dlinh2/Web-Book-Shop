@@ -72,9 +72,7 @@
     ?>
     <div class="header">
         <div class="wrapper">
-            <ul class= "topnav">
-                <a href="kiem-tra-don-hang.php">Kiểm tra đơn hàng</a>
-                &nbsp;&nbsp;|&nbsp;&nbsp;       
+            <ul class= "topnav">     
                 <a href="OrderHistory.php">Lịch sử mua hàng</a>
             </ul>
             <ul class="topnavR">
