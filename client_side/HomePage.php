@@ -89,7 +89,10 @@
     $result = $bookObj->getBooksByCategory($category["category_id"]);
     if(!$result)
         die("<h1>Trouble connecting to database</h1>");
-    $books = array_slice($bookObj->data, 0, 10);
+    $books = array_filter($bookObj->data, function($book) {
+        return $book["book_status"];
+    });
+    $books = array_slice($books, 0, 10);
     if (count($books) == 0) continue;
     $chunks = array_chunk($books, 5);
     foreach($chunks as $chunk)
