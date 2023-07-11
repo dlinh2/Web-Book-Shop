@@ -16,7 +16,7 @@ if (isset($_POST["id"]) && isset($_POST["status"])) {
             $message .= "Đơn hàng mã " . $result . " của bạn đang được giao. Vui lòng để ý điện thoại để có liên lạc với người giao hàng.";
         elseif ($_POST["status"] == "Đã thanh toán")
             $message .= "Cảm ơn vì đã mua hàng của BookShop. Hãy theo dõi trang chủ để biết thêm chi tiết về sản phẩm mới nhé!";
-        $headers = "From: agenthanh0210@gmail.com\r\n";
+        $headers = "From: bookshop@gmail.com\r\n";
         $headers .= "Content-Type: text/plain; charset=utf-8\r\n";
 
         mail($to, $subject, $message, $headers);
