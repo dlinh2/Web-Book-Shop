@@ -88,14 +88,6 @@
 
         </table>
     </div>
-    <div class="table_wrap">
-        
-        <br>
-        <div class="add_link">
-            <p><a href="ShowOrder.php">Quay lại danh sách đơn hàng</a></p>
-        </div>
-    </div>
-    
 
 </body>
 </html>

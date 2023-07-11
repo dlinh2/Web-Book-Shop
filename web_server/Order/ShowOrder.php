@@ -81,7 +81,7 @@
                             <option value="Đã thanh toán" <?php if ($invoice["invoice_status"]=="Đã thanh toán") echo "selected" ?>>Đã thanh toán</option>
                         </select>
                     </td>
-                    <td><a href="viewDetailOrder.php?id=<?=$invoice['invoice_id']?>">Xem</a> - <a href="DeleteInvoice.php?id=<?=$invoice['invoice_id']?>" onclick="return confirm('Có chắc là bạn muốn xóa? (Đơn hàng sẽ không thể khôi phục)')">Xóa</a></td>
+                    <td><a href="viewDetailOrder.php?id=<?=$invoice['invoice_id']?>" target="_blank">Xem</a> - <a href="DeleteInvoice.php?id=<?=$invoice['invoice_id']?>" onclick="return confirm('Có chắc là bạn muốn xóa? (Đơn hàng sẽ không thể khôi phục)')">Xóa</a></td>
                 </tr>
             <?php } ?>
 
