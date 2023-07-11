@@ -84,7 +84,7 @@
                     </p>
                     <p>
                         Bạn đã có tài khoản? Hãy 
-                        <a href="" class="btn">
+                        <a href="dang-nhap.php" class="btn">
                             <strong>Đăng nhập</strong>
                         </a>
                     </p>

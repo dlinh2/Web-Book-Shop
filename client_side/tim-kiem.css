@@ -6,6 +6,7 @@
     margin-left: 10%;
     margin-right: 10%;
     margin-bottom: 10%;
+    position: relative;
 }
 .pageBody .category {
     background-image: url(../img/lbcenter.png);
@@ -58,8 +59,8 @@ footer{
     color: #fff;
     border-top: 4px solid rgba(216,216,216,.8);
     padding: 20px;
-    position: sticky;
-    top: 100%;
+    position: absolute;
+    bottom: 0;
 
 }
 
