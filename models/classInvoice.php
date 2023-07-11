@@ -18,7 +18,8 @@ class Invoice extends DatabaseConnection {
             $param = [$row->title, $row->quantity, $row->unitPrice];
             $result = $this->executeSQL($sqlQuery, $param);
         }
-        return $result;
+        $this->executeSQL("select MAX(invoice_id) as id from invoice");
+        return $this->pdo_statement->fetch();
     }
 
     function getInvoiceList() {

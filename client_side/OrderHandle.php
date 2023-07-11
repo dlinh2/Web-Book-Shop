@@ -22,16 +22,17 @@
         require_once("../models/classInvoice.php");
         $invoiceObj = new Invoice();
         $result = $invoiceObj->addInvoice($_SESSION["cart"], isset($_SESSION["user"]) ? $_SESSION["user"] : NULL, $_POST["custName"], $_POST["custPhone"], $_POST["custEmail"], $_POST["custAddress"], "Chờ xử lý");
-        if ($result) {
+        if ($result != NULL) {
             $_SESSION["cart"] = array();
             echo "<div>Đơn hàng đã được đặt thành công. ";
             $to = $_POST["custEmail"];
-            $subject = "This is the subject";
-            $message = "This is the message body";
-            $headers = "From: agenthanh0210@gmail.com\r\n";
+            $subject = "Đơn hàng được đặt thành công";
+            $message = "Xin chào " . $_POST["custName"] . ", \r\n";
+            $message .= "Cảm ơn vì đã đặt hàng. Mã đơn hàng của bạn là " . $result["id"];
+            $message .= ". Trạng thái đơn hàng: Chờ xử lý. Bạn sẽ nhận được mail mỗi khi trạng thái đơn hàng được cập nhật";
+            $headers = "From: bookshop@gmail.com\r\n";
             $headers .= "Content-Type: text/plain; charset=utf-8\r\n";
 
-            // Send the email
             $mailSent = mail($to, $subject, $message, $headers);
 
             if ($mailSent) {

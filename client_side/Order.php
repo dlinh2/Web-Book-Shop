@@ -35,6 +35,7 @@
                 count++;
             } else if (!phoneRegex.test(custPhone.value)) {
                 phoneError.innerHTML = "Định dạng số điện thoại không đúng";
+                count++;
             } else {
                 phoneError.innerHTML = "";
             }

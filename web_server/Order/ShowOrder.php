@@ -13,24 +13,27 @@
 
         function updateStatus(option, invoiceId) {
             var status = option.value;
-            if (status != previousStatus) {
-                if (confirm('Bạn có muốn cập nhật trạng thái? (Sau khi cập nhật sẽ gửi mail cho khách hàng)')) {
-                    var xhr = new XMLHttpRequest();
-                    xhr.open("POST", "UpdateStatus.php", true);
-                    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-                    params = "id=" + invoiceId + "&status=" + option.value;
-                    xhr.onreadystatechange = function() {
-                        if (xhr.readyState === 4 && xhr.status === 200) {
-                            var response = xhr.responseText;
-                            console.log(response);
-                            window.location.reload();
-                        }
-                    };
-                    xhr.send(params);
-                    
-                } else {
-                    option.value = previousStatus;
-                }
+            if (confirm('Bạn có muốn cập nhật trạng thái? (Sau khi cập nhật sẽ gửi mail cho khách hàng)')) {
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", "UpdateStatus.php", true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                params = "id=" + invoiceId + "&status=" + option.value;
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        var response = xhr.responseText;
+                        console.log(response);
+                        window.location.reload();
+                    }
+                };
+                xhr.send(params);
+                
+            } else {
+                if (option.value == "Đã xác nhận") 
+                    option.value = "Chờ xử lý";
+                else if (option.value == "Đang giao")
+                    option.value = "Đã xác nhận";
+                else if (option.value == "Đã thanh toán")
+                    option.value = "Đang giao";
             }
         }
     </script>
@@ -71,13 +74,12 @@
                     <td><?=$invoice["customer_phone"]?></td>
                     <td><?=$invoice["customer_email"] ?></td>
                     <td>
-                        <select id="status" onchange="updateStatus(this, <?=$invoice['invoice_id']?>);">
+                        <select name="status" id="status" onchange="updateStatus(this, <?=$invoice['invoice_id']?>);">
                             <option value="Chờ xử lý" <?php if ($invoice["invoice_status"]=="Chờ xử lý") echo "selected" ?>>Chờ xử lý</option>
                             <option value="Đã xác nhận" <?php if ($invoice["invoice_status"]=="Đã xác nhận") echo "selected" ?>>Đã xác nhận</option>
                             <option value="Đang giao" <?php if ($invoice["invoice_status"]=="Đang giao") echo "selected" ?>>Đang giao</option>
                             <option value="Đã thanh toán" <?php if ($invoice["invoice_status"]=="Đã thanh toán") echo "selected" ?>>Đã thanh toán</option>
                         </select>
-                        <script>var previousStatus = document.getElementById("status").value;</script>
                     </td>
                     <td><a href="viewDetailOrder.php?id=<?=$invoice['invoice_id']?>">Xem</a> - <a href="DeleteInvoice.php?id=<?=$invoice['invoice_id']?>" onclick="return confirm('Có chắc là bạn muốn xóa? (Đơn hàng sẽ không thể khôi phục)')">Xóa</a></td>
                 </tr>
