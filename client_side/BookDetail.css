@@ -76,7 +76,6 @@
     min-height: 400px;
     margin-top: 5em;
     margin-bottom: 5em;
-    position: relative;
     
 }
 .bookdetail {
@@ -334,8 +333,8 @@ footer{
     color: #fff;
     border-top: 4px solid rgba(216,216,216,.8);
     padding: 20px;
-    position: absolute;
-    bottom: 0;
+    position: sticky;
+    top: 100%;
 }
 
 
