@@ -64,7 +64,6 @@
 
     </div>
 
-    </div>
     <footer class="footer">
         Địa chỉ: Đường Nghiêm Xuân Yêm - Đại Kim - Hoàng Mai - Hà Nội</br>
         Hộ trợ kỹ thuật: 0123456789 (Nhóm dự án công nghệ thông tin)
